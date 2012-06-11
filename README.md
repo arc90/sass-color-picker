@@ -5,11 +5,11 @@ sass-color-picker
 
 ---
 
-### (Coffee|Java)Script Build
+### CoffeeScript Build
 
 Right now the core color handling code is written in CoffeeScript and located in the `/coffee` directory. There is a **dependency** on `underscore.js` which is in the `/js/lib` dir. 
 
-**Wathcer:** There is a Cakefile which will run a watcher for the CoffeeScript files, you can kick this off in the root dir with:
+**Watcher:** There is a Cakefile which will run a watcher for the CoffeeScript files, you can kick this off in the root dir with:
 
 ```bash
 $ cake watch
@@ -27,7 +27,7 @@ The JavaScript files are tested with Jasmine and can be found in the `/tests` di
 
 There is a reference SCSS file I use to make sure functions are working correctly, this is compiled with sass, and you can use the `$ compass watch` to track the `scss` dir.
 
-### Bobo Tests
+### Hackety hack hack
 
 A really ugly hack (but it works) of the sliders at work can be seen in `/test.html`
 
