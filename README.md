@@ -17,7 +17,7 @@ $ cake watch
 
 This will autocompile CoffeeScript into JavaScript in the `/js` dir.
 
-**Docs:** The CoffeeScript files are documented with Docce in the `/docs` dir, just pop that open in a browser.
+**Docs:** The CoffeeScript files are documented with Docco in the `/docs` dir, just pop that open in a browser.
 
 ### Jasmine Tests
 
