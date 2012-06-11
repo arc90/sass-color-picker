@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+	<title>SassyColor Test</title>
+	<style type="text/css" media="screen">
+		body {
+			padding: 50px;
+			font-family: "Helvetica Neue", Helvetica, sans-serif;
+			color: #333;
+		}
+		#swatch,
+		#swatch2 {
+			width: 300px;
+			height: 100px;
+			margin: 50px 0;
+			background: #fff;
+			border: #ccc 1px solid;
+			padding: 20px;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>Bobo™ Test Suite</h1>
+	<p>This will only work in browsers that support HTML5 sliders. Enter a color in 'Start Color' and use the sliders to adjust lightness/saturation.</p>
+
+	<div id="swatch"></div>
+	<div id="swatch2"></div>
+
+	<form action="" method="get" accept-charset="utf-8">
+		<p>
+			<label for="color">Start color: </label>
+			<input type="text" name="color" id="color" value="#000000" placeholder="Enter a color" />
+		</p>
+		<p>
+			<label for="h">H</label>
+			<input type="text" name="hue" id="h" value="" placeholder="Hue" />
+			<label for="s">S</label>
+			<input type="text" name="saturation" id="s" value="" placeholder="Saturation" />
+			<label for="l">L</label>
+			<input type="text" name="lightness" id="l" value="" placeholder="Lightness" />
+		</p>
+		<p>
+			<label for="slider_l">Lightness</label>
+			<input type="range" min="0" max="100" id="slider_l" />
+		</p>
+		<p>
+			<label for="slider_s">Saturation</label>
+			<input type="range" min="0" max="100" id="slider_s" />
+		</p>
+		
+	</form>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="js/lib/underscore-min.js"></script>
+	<script src="js/Color.js"></script>
+	<script src="js/Transforms.js"></script>
+	<script>
+
+		// Here be ugly hacky shit, just to prove that we can get
+		// correct lighten/darken values off a slider.
+
+		// REBUILD OR DIE! o_O
+
+		$(function(){
+			var $slider = $('#slider_l'),
+				$slider_s = $('#slider_s'),
+				$color    = $('#color'),
+				$h        = $('#h'),
+				$s        = $('#s'),
+				$l        = $('#l'),
+				$swatch   = $('#swatch'),
+				$swatch2  = $('#swatch2');
+
+			var direction, start_color;
+			var prev_val = start_val = 0;
+
+			function set_swatch(color) {
+				if (!start_color) {
+					start_color = color.hex;
+					$swatch.css('background-color', color.hex);
+					$swatch.html(color.hex);
+				}
+				$swatch2.css('background-color', color.hex);
+				$swatch2.html(color.hex);
+				var hsl = color.hsl;
+				$h.val(hsl.h);
+				$s.val(hsl.s);
+				//$l.val(hsl.l);
+			}
+
+			$('form').on('mouseup', '#slider_l', function(e){
+				prev_val = $(this).val();
+			});
+
+			$('form').on('change', '#slider_l', function(e){
+				var delta;
+				var val = $(this).val();
+				var new_color = new Color(start_color);
+
+				if (val < start_val) {
+					var new_c = Transforms.darken(new Color(start_color), start_val - val);
+					var update = new Color(new_c);
+					set_swatch(update);
+					$swatch2.append("<br />darken('" + start_color + "', " + (start_val - val) + ");" );
+				} else if (val > start_val) {
+					var new_c = Transforms.lighten(new Color(start_color), val - start_val);
+					var update = new Color(new_c);
+					set_swatch(update);
+					$swatch2.append("<br />lighten('" + start_color + "', " + (val - start_val) + ");" );
+				} else {
+					var update = new Color(start_color)
+					set_swatch(update);
+					$swatch2.html(update.hex + "<br />lighten('" + start_color + "', 0);" );
+				}
+				$l.val(val);
+			});
+
+			$('form').on('change', '#slider_s', function(e){
+				var val = $(this).val();
+				var new_color = new Color(start_color);
+
+				if (val < start_s_val) {
+					var new_c = Transforms.desaturate(new_color, start_s_val - val);
+					var update = new Color(new_c);
+					set_swatch(update);
+					$swatch2.append("<br />desaturate('" + start_color + "', " + (start_s_val - val) + ");" );
+				} else if (val > start_s_val) {
+					var new_c = Transforms.saturate(new_color, val - start_s_val);
+					var update = new Color(new_c);
+					set_swatch(update);
+					$swatch2.append("<br />saturate('" + start_color + "', " + (val - start_s_val) + ");" );
+				} else {
+					var update = new_color;
+					set_swatch(update);
+					$swatch2.html(update.hex + "<br />saturate('" + start_color + "', 0);" );
+				}
+				$s.val(val);
+			});
+
+			$('form').on('change', '#color', function(e){
+				start_color = null;
+				var color = new Color($(this).val());
+				var hsl = color.hsl;
+				set_swatch(color);
+				$slider.val(hsl.l);
+				$slider_s.val(hsl.s);
+				start_val = hsl.l;
+				start_s_val = hsl.s;
+			});
+		});
+	</script>
+</body>
+</html>

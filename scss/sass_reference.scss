@@ -1,0 +1,61 @@
+$ref : #003399;
+
+// Lighten
+
+.lighten_1 {
+	color: lighten($ref, 20);
+}
+
+.lighten_2 {
+	color: lighten($ref, 50);
+}
+
+.lighten_3 {
+	color: lighten($ref, 100);
+}
+
+.lighten_4 {
+	color: lighten($ref, 0);
+}
+
+.lighten_red_1 {
+	color: lighten(#ff0000, 20);
+}
+
+// Darken
+
+.darken_1 {
+	color: darken($ref, 20);
+}
+
+.darken_2 {
+	color: darken($ref, 30);
+}
+
+// darken_3 : 200% is out of bounds for SASS;
+
+.darken_4 {
+	color: darken($ref, 0);
+}
+
+// Adjust Hues
+
+.adjust_hue_1 {
+	color: adjust_hue($ref, 10);
+}
+
+.adjust_hue_2 {
+	color: adjust_hue($ref, 140);
+}
+
+.adjust_hue_3 {
+	color: adjust_hue($ref, -220);
+}
+
+.adjust_hue_4 {
+	color: adjust_hue($ref, 360);
+}
+
+.adjust_hue_5 {
+	color: adjust_hue($ref, 540);
+}
