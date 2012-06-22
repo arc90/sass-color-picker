@@ -2,60 +2,111 @@
 <html>
 <head>
 	<title>SassyColor Test</title>
-	<style type="text/css" media="screen">
-		body {
-			padding: 50px;
-			font-family: "Helvetica Neue", Helvetica, sans-serif;
-			color: #333;
-		}
-		#swatch,
-		#swatch2 {
-			width: 300px;
-			height: 100px;
-			margin: 50px 0;
-			background: #fff;
-			border: #ccc 1px solid;
-			padding: 20px;
-			color: #fff;
-		}
-	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/styles.css"  />
 </head>
 <body>
 
-	<h1>Bobo™ Test Suite</h1>
-	<p>This will only work in browsers that support HTML5 sliders. Enter a color in 'Start Color' and use the sliders to adjust lightness/saturation.</p>
+	<header id="header" class="wrapper">
+    	<h1>Sass Me</h1>
+    	<p>Let's put a quick little description right here about what this does.</p>
+	</header>
 
-	<div id="swatch"></div>
-	<div id="swatch2"></div>
+    <section id="container" class="wrapper">
+        <form action="" method="get" accept-charset="utf-8" class="inactive">
+            <ul id="content">
+                <li id="colorInput" class="listItem focus">
+                    <label for="color">#</label>
+                    <input type="text" name="color" id="color" maxlength="6" placeholder="0183B7" />
+                    <span id="help">go ahead, insert a hexadecimal value</span>
+                </li>
+                <li class="listItem">
+                	<div id="swatch1" class="swatchContainer">
+                		<p class="swatchLabel">input color</p>
+                    	<div class="swatch"></div>
+                    </div>
+                    <div id="swatch2" class="swatchContainer">
+                    	<p class="swatchLabel">output color</p>
+                    	<div class="swatch"></div>
+                    </div>
+                    <div id="code">move the sliders to get your code</div>
+                    <!-- maybe a 'copy to clipboard' button here? -->
+                </li>
 
-	<form action="" method="get" accept-charset="utf-8">
-		<p>
-			<label for="color">Start color: </label>
-			<input type="text" name="color" id="color" value="#000000" placeholder="Enter a color" />
-		</p>
-		<p>
-			<label for="h">H</label>
-			<input type="text" name="hue" id="h" value="" placeholder="Hue" />
-			<label for="s">S</label>
-			<input type="text" name="saturation" id="s" value="" placeholder="Saturation" />
-			<label for="l">L</label>
-			<input type="text" name="lightness" id="l" value="" placeholder="Lightness" />
-		</p>
-		<p>
-			<label for="slider_l">Lightness</label>
-			<input type="range" min="0" max="100" id="slider_l" />
-		</p>
-		<p>
-			<label for="slider_s">Saturation</label>
-			<input type="range" min="0" max="100" id="slider_s" />
-		</p>
-		
-	</form>
+<!-- i don't think we're including these anymore right?
+                <li>
+                    <label for="h">H</label>
+                    <input type="text" name="hue" id="h" value="" placeholder="Hue" />
+                    <label for="s">S</label>
+                    <input type="text" name="saturation" id="s" value="" placeholder="Saturation" />
+                    <label for="l">L</label>
+                    <input type="text" name="lightness" id="l" value="" placeholder="Lightness" />
+                </li>
+-->
+                <li class="listItem slider">
+                    <input type="range" min="0" max="100" id="slider_l" />
+                    <label for="slider_l">&larr; darken / lighten &rarr;</label>
+                </li>
+                <li class="listItem slider">
+                    <input type="range" min="0" max="100" id="slider_s" />
+                    <label for="slider_s">&larr; desaturate / saturate &rarr;</label>
+                </li>
+                <li class="listItem slider">
+                    <input type="range" min="0" max="100" id="slider_h" />
+                    <label for="slider_h">&larr; adjust hue &rarr;</label>
+                </li>
+            </ul>
+        </form>
+    </section>
+
+    <footer id="footer" class="wrapper">
+    	<p><a href="">Arc90 Lab</a><br />What else goes here?</p>
+    </footer>
+
+
+
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="js/lib/underscore-min.js"></script>
 	<script src="js/Color.js"></script>
 	<script src="js/Transforms.js"></script>
 	<script>
+
+		// This is just garbage jim-script
+		// you can remove it, but for now it shows the type of interaction desired
+		$(function(){
+			// On page load, focus the color input
+			$('#color').focus();
+
+			// Give the input color's <li> a class of focus when #color is in focus
+			$('#color').focus(function(){
+				$(this).parent().addClass('focus');
+			}).blur(function(){
+				$(this).parent().removeClass('focus');
+			});
+		});
+
+		$(function(){
+			// give the form a class of 'active' when the color is validated
+			$('#color').keyup(function(){
+				colorValue = $(this).val();
+				// when it hits 6 characters, fill everything in in the form
+				if (  colorValue.length > 5 ) {
+					console.log('greater than 5');
+					$('form').removeClass('inactive');
+					$('form').addClass('active');
+				} else {
+					$('form').addClass('inactive');
+					$('form').removeClass('active');
+				}
+			});
+
+		});
 
 		// Here be ugly hacky shit, just to prove that we can get
 		// correct lighten/darken values off a slider.
@@ -69,8 +120,9 @@
 				$h        = $('#h'),
 				$s        = $('#s'),
 				$l        = $('#l'),
-				$swatch   = $('#swatch'),
-				$swatch2  = $('#swatch2');
+				$swatch   = $('#swatch1 div'),
+				$code	  = $('#code'),
+				$swatch2  = $('#swatch2 div');
 
 			var direction, start_color;
 			var prev_val = start_val = 0;
@@ -102,16 +154,16 @@
 					var new_c = Transforms.darken(new Color(start_color), start_val - val);
 					var update = new Color(new_c);
 					set_swatch(update);
-					$swatch2.append("<br />darken('" + start_color + "', " + (start_val - val) + ");" );
+					$code.html("darken('" + start_color + "', " + (start_val - val) + ");" );
 				} else if (val > start_val) {
 					var new_c = Transforms.lighten(new Color(start_color), val - start_val);
 					var update = new Color(new_c);
 					set_swatch(update);
-					$swatch2.append("<br />lighten('" + start_color + "', " + (val - start_val) + ");" );
+					$code.html("lighten('" + start_color + "', " + (val - start_val) + ");" );
 				} else {
 					var update = new Color(start_color)
 					set_swatch(update);
-					$swatch2.html(update.hex + "<br />lighten('" + start_color + "', 0);" );
+					$code.html(update.hex + "lighten('" + start_color + "', 0);" );
 				}
 				$l.val(val);
 			});
@@ -124,16 +176,16 @@
 					var new_c = Transforms.desaturate(new_color, start_s_val - val);
 					var update = new Color(new_c);
 					set_swatch(update);
-					$swatch2.append("<br />desaturate('" + start_color + "', " + (start_s_val - val) + ");" );
+					$code.html("desaturate('" + start_color + "', " + (start_s_val - val) + ");" );
 				} else if (val > start_s_val) {
 					var new_c = Transforms.saturate(new_color, val - start_s_val);
 					var update = new Color(new_c);
 					set_swatch(update);
-					$swatch2.append("<br />saturate('" + start_color + "', " + (val - start_s_val) + ");" );
+					$code.html("saturate('" + start_color + "', " + (val - start_s_val) + ");" );
 				} else {
 					var update = new_color;
 					set_swatch(update);
-					$swatch2.html(update.hex + "<br />saturate('" + start_color + "', 0);" );
+					$code.html(update.hex + "saturate('" + start_color + "', 0);" );
 				}
 				$s.val(val);
 			});

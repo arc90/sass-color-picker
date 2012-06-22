@@ -1,0 +1,319 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* line 18, ../scss/_reset.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+/* line 28, ../scss/_reset.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 31, ../scss/_reset.scss */
+body {
+  line-height: 1;
+}
+
+/* line 34, ../scss/_reset.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 37, ../scss/_reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 41, ../scss/_reset.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 45, ../scss/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+    PAGE & STRUCTURAL STYLES
+
+    General page and structural styles
+*/
+/* line 15, ../scss/_css.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 21, ../scss/_css.scss */
+body {
+  padding: 0;
+  margin: 0 20px;
+  font: 16px/1.4em "Droid Sans", Arial, sans-serif;
+  color: #333;
+}
+@media screen and (max-width:520px) {
+  /* line 21, ../scss/_css.scss */
+  body {
+    margin: 0;
+  }
+}
+
+/* line 32, ../scss/_css.scss */
+.wrapper {
+  max-width: 800px;
+  width: 800px\9;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* line 39, ../scss/_css.scss */
+#container {
+  padding: 0 30px 30px;
+  background: #fff;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+@media screen and (max-width:520px) {
+  /* line 39, ../scss/_css.scss */
+  #container {
+    padding: 0;
+  }
+}
+
+/* line 52, ../scss/_css.scss */
+a,
+a:link,
+a:visited {
+  color: #0183b7;
+  text-decoration: none;
+}
+
+/* line 56, ../scss/_css.scss */
+a:hover {
+  color: #00161f;
+  text-decoration: underline;
+}
+
+/*
+    GENERAL INPUT ELEMENTS
+
+    General page styles for input elements
+
+*/
+/* line 67, ../scss/_css.scss */
+label {
+  color: #777777;
+}
+
+/* line 71, ../scss/_css.scss */
+input[type="text"] {
+  border: 1px solid #e0e0e0;
+  border-bottom-color: #e5e5e5;
+  color: #333333;
+  box-shadow: inset 0 1px 2px #eee;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  padding-left: 2em;
+  font-size: 1em;
+  height: 44px;
+  width: 100%;
+  font-family: 'Droid Sans Mono', Courier, monospace;
+}
+/* line 87, ../scss/_css.scss */
+input[type="text"]::-webkit-input-placeholder {
+  color: #cccccc;
+}
+/* line 91, ../scss/_css.scss */
+input[type="text"]:-moz-placeholder {
+  color: #cccccc;
+}
+/* line 95, ../scss/_css.scss */
+input[type="text"]:focus {
+  outline: none;
+  border: 1px solid #0183b7;
+  box-shadow: 0 0 5px #86dcfe;
+}
+
+/* line 102, ../scss/_css.scss */
+label[for="color"] {
+  position: absolute;
+  top: .75em;
+  left: 0;
+  padding-left: 1em;
+  color: #cccccc;
+}
+
+/*
+    PAGE HEADER
+
+    SassMe page title styles
+*/
+/* line 115, ../scss/_css.scss */
+#header {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 3px double #E9E9E9;
+}
+/* line 120, ../scss/_css.scss */
+#header h1 {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1em;
+}
+/* line 125, ../scss/_css.scss */
+#header p {
+  font-size: 0.75em;
+  line-height: 1.4em;
+  color: #777777;
+  max-width: 500px;
+  margin: .5em auto 0 auto;
+}
+
+/*
+    LIST ITEMS
+
+    Styles for each <li> item
+*/
+/* line 139, ../scss/_css.scss */
+.listItem {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+/* line 147, ../scss/_css.scss */
+.listItem.slider {
+  margin: 40px 0;
+}
+/* line 149, ../scss/_css.scss */
+.listItem.slider input {
+  display: block;
+  width: 75%;
+  margin: 0 auto;
+}
+/* line 154, ../scss/_css.scss */
+.listItem.slider label {
+  font-size: 0.75em;
+}
+/* line 159, ../scss/_css.scss */
+.listItem#colorInput {
+  width: 300px;
+  margin: 40px auto;
+}
+
+/* line 169, ../scss/_css.scss */
+.focus label,
+.focus #help {
+  color: #0183b7;
+}
+/* line 172, ../scss/_css.scss */
+.focus #help {
+  opacity: 1;
+}
+
+/* line 177, ../scss/_css.scss */
+.inactive .listItem {
+  opacity: .15;
+}
+/* line 180, ../scss/_css.scss */
+.inactive .listItem#colorInput {
+  opacity: 1;
+}
+
+/*
+    SWATCHES
+
+    Styles for the main content swatches
+*/
+/* line 191, ../scss/_css.scss */
+.swatchContainer {
+  width: 50%;
+  background: #fff;
+  color: #fff;
+  float: left;
+}
+/* line 197, ../scss/_css.scss */
+.swatchContainer .swatch {
+  height: 200px;
+  width: 100%;
+}
+/* line 203, ../scss/_css.scss */
+.swatchContainer .swatchLabel {
+  color: #777777;
+  font-size: 0.75em;
+}
+/* line 210, ../scss/_css.scss */
+.swatchContainer#swatch1 .swatchLabel {
+  text-align: right;
+  margin-right: 1em;
+}
+/* line 217, ../scss/_css.scss */
+.swatchContainer#swatch2 .swatchLabel {
+  text-align: left;
+  margin-left: 1em;
+}
+
+/*
+    INDIVIDUAL ELEMENTS
+
+    Styles for individual elements on the page
+*/
+/* line 230, ../scss/_css.scss */
+#code {
+  font-family: 'Droid Sans Mono', Courier, monospace;
+  font-size: 0.875em;
+  clear: both;
+  border: 1px solid #e9e9e9;
+  padding: 5px 0;
+  background: #f7f7f7;
+}
+
+/* line 238, ../scss/_css.scss */
+#help {
+  opacity: 0;
+  display: block;
+  color: #777777;
+  font-size: 0.875em;
+}
+
+/*
+    FOOTER
+
+*/
+/* line 249, ../scss/_css.scss */
+#footer {
+  font-size: 0.875em;
+  text-align: center;
+  border-top: 3px double #E9E9E9;
+  padding: 20px 0 60px;
+  color: #777777;
+}
