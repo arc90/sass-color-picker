@@ -65,7 +65,11 @@
     </section>
 
     <footer id="footer" class="wrapper">
-    	<p><a href="">Arc90 Lab</a><br />What else goes here?</p>
+    	<img src="img/arc90-logo.png" alt="Arc90" />
+    	<p>A tool from the <a href="">Arc90 Lab</a></p>
+    	<p>Source is on <a href="">Github</a></p>
+    	<p id="kindling">SASS Me inspired by social innovation software <a href="http://kindlingapp.com/">Kindling</a>.</p>
+    	<img src="img/kindling.png" alt="Kindling - Social Innovation Software" />
     </footer>
 
 
@@ -80,6 +84,14 @@
 		Modernizr.load({
 		  test: Modernizr.inputtypes.range,
 		  nope: 'js/no_range.js'
+		});
+
+		// I'm not sure if this is exactly how we want to handle this...
+		// But it's here to remind us to do something about providing
+		// an easy way to copy/past the output
+		$('#code').click(function(){
+			text = $(this).text();
+			window.prompt ("Copy to clipboard: Ctrl+C, Enter", text);
 		});
 
 		// Here Be the Magic!
@@ -263,7 +275,7 @@
 				removed = stack.splice(index, 1);
 			}
 
-			
+
 
 			$('form').on('change', 'input[type=range]', function(e) {
 				var $el = $(e.target);
@@ -306,7 +318,7 @@
 									'value'     : start_color.hex,
 									'transform' : transform.value
 								});
-							}							
+							}
 						} else {
 							if (transform.func === null) {
 								output_value = output_value;
@@ -324,7 +336,7 @@
 
 				$code.html(output_value);
 				$swatchB.trigger('transform', [output_color]);
-				
+
 			});
 
 		});

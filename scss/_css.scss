@@ -114,7 +114,6 @@ label[for="color"] {
 */
 #header {
     text-align: center;
-    margin-bottom: 20px;
     border-bottom: 3px double #E9E9E9;
 
     h1 {
@@ -140,12 +139,19 @@ label[for="color"] {
     text-align: center;
     margin-bottom: 40px;
     position: relative;
+    opacity: 1;
+    -webkit-transition: .5s all ease;
+    -moz-transition: .5s all ease;
+    -ms-transition: .5s all ease;
+    -o-transition: .5s all ease;
+    transition: .5s all ease;
 
     // Slider Controls
     // Would be cool to dynamically set a gradient on these
     // that way you could see what direction your colors are going...
     &.slider {
-        margin: 40px 0;
+        margin: 20px 0;
+
         input {
             display: block;
             width: 75%;
@@ -174,6 +180,7 @@ label[for="color"] {
     }
 }
 .inactive {
+
     .listItem {
         opacity: .15;
 
@@ -247,9 +254,13 @@ label[for="color"] {
 
 */
 #footer {
-   font-size: (14em / $bodyFontSize);
+   font-size: (13em / $bodyFontSize);
    text-align: center;
    border-top: 3px double #E9E9E9;
    padding: 20px 0 60px;
    color: $lightTextColor;
+
+   #kindling {
+        margin: 30px 0 0 0;
+   }
 }

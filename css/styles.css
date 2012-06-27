@@ -181,16 +181,15 @@ label[for="color"] {
 /* line 115, ../scss/_css.scss */
 #header {
   text-align: center;
-  margin-bottom: 20px;
   border-bottom: 3px double #E9E9E9;
 }
-/* line 120, ../scss/_css.scss */
+/* line 119, ../scss/_css.scss */
 #header h1 {
   font-weight: 700;
   font-size: 32px;
   line-height: 1em;
 }
-/* line 125, ../scss/_css.scss */
+/* line 124, ../scss/_css.scss */
 #header p {
   font-size: 0.75em;
   line-height: 1.4em;
@@ -204,47 +203,53 @@ label[for="color"] {
 
     Styles for each <li> item
 */
-/* line 139, ../scss/_css.scss */
+/* line 138, ../scss/_css.scss */
 .listItem {
   text-align: center;
   margin-bottom: 40px;
   position: relative;
+  opacity: 1;
+  -webkit-transition: .5s all ease;
+  -moz-transition: .5s all ease;
+  -ms-transition: .5s all ease;
+  -o-transition: .5s all ease;
+  transition: .5s all ease;
 }
-/* line 147, ../scss/_css.scss */
+/* line 152, ../scss/_css.scss */
 .listItem.slider {
-  margin: 40px 0;
+  margin: 20px 0;
 }
-/* line 149, ../scss/_css.scss */
+/* line 155, ../scss/_css.scss */
 .listItem.slider input {
   display: block;
   width: 75%;
   margin: 0 auto;
 }
-/* line 154, ../scss/_css.scss */
+/* line 160, ../scss/_css.scss */
 .listItem.slider label {
   font-size: 0.75em;
 }
-/* line 159, ../scss/_css.scss */
+/* line 165, ../scss/_css.scss */
 .listItem#colorInput {
   width: 300px;
   margin: 40px auto;
 }
 
-/* line 169, ../scss/_css.scss */
+/* line 175, ../scss/_css.scss */
 .focus label,
 .focus #help {
   color: #0183b7;
 }
-/* line 172, ../scss/_css.scss */
+/* line 178, ../scss/_css.scss */
 .focus #help {
   opacity: 1;
 }
 
-/* line 177, ../scss/_css.scss */
+/* line 184, ../scss/_css.scss */
 .inactive .listItem {
   opacity: .15;
 }
-/* line 180, ../scss/_css.scss */
+/* line 187, ../scss/_css.scss */
 .inactive .listItem#colorInput {
   opacity: 1;
 }
@@ -254,29 +259,29 @@ label[for="color"] {
 
     Styles for the main content swatches
 */
-/* line 191, ../scss/_css.scss */
+/* line 198, ../scss/_css.scss */
 .swatchContainer {
   width: 50%;
   background: #fff;
   color: #fff;
   float: left;
 }
-/* line 197, ../scss/_css.scss */
+/* line 204, ../scss/_css.scss */
 .swatchContainer .swatch {
   height: 200px;
   width: 100%;
 }
-/* line 203, ../scss/_css.scss */
+/* line 210, ../scss/_css.scss */
 .swatchContainer .swatchLabel {
   color: #777777;
   font-size: 0.75em;
 }
-/* line 210, ../scss/_css.scss */
+/* line 217, ../scss/_css.scss */
 .swatchContainer#swatch1 .swatchLabel {
   text-align: right;
   margin-right: 1em;
 }
-/* line 217, ../scss/_css.scss */
+/* line 224, ../scss/_css.scss */
 .swatchContainer#swatch2 .swatchLabel {
   text-align: left;
   margin-left: 1em;
@@ -287,7 +292,7 @@ label[for="color"] {
 
     Styles for individual elements on the page
 */
-/* line 230, ../scss/_css.scss */
+/* line 237, ../scss/_css.scss */
 #code {
   font-family: 'Droid Sans Mono', Courier, monospace;
   font-size: 0.875em;
@@ -297,7 +302,7 @@ label[for="color"] {
   background: #f7f7f7;
 }
 
-/* line 238, ../scss/_css.scss */
+/* line 245, ../scss/_css.scss */
 #help {
   opacity: 0;
   display: block;
@@ -309,11 +314,15 @@ label[for="color"] {
     FOOTER
 
 */
-/* line 249, ../scss/_css.scss */
+/* line 256, ../scss/_css.scss */
 #footer {
-  font-size: 0.875em;
+  font-size: 0.813em;
   text-align: center;
   border-top: 3px double #E9E9E9;
   padding: 20px 0 60px;
   color: #777777;
+}
+/* line 263, ../scss/_css.scss */
+#footer #kindling {
+  margin: 30px 0 0 0;
 }
