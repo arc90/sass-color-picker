@@ -45,7 +45,7 @@ root.Transforms =
   #### Adjust the hue
   #
   # @param **color** _String_ expects a hexadecimal  
-  # @param **degrees** _Integer_ expects 0-100  
+  # @param **degrees** _Integer_ expects 0-360  
   #
   adjust_hue : (color, degrees) ->
     hsl = color.mod

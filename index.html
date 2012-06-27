@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+<head>
+	<title>SassyColor Test</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!--[if lt IE 9]>
+		<script src="js/lib/html5shiv.js"></script>
+	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/styles.css"  />
+	<script src="js/lib/modernizr.custom.min.js"></script>
+</head>
+<body>
+
+	<header id="header" class="wrapper">
+    	<h1>Sass Me</h1>
+    	<p>Let's put a quick little description right here about what this does.</p>
+	</header>
+
+    <section id="container" class="wrapper">
+        <form action="" method="get" accept-charset="utf-8" class="inactive">
+            <ul id="content">
+                <li id="colorInput" class="listItem focus">
+                    <label for="color">#</label>
+                    <input type="text" name="color" id="color" maxlength="6" placeholder="0183B7" />
+                    <span id="help">go ahead, insert a hexadecimal value</span>
+                </li>
+                <li class="listItem">
+                	<div id="swatch1" class="swatchContainer">
+                		<p class="swatchLabel">input color</p>
+                    	<div class="swatch"></div>
+                    </div>
+                    <div id="swatch2" class="swatchContainer">
+                    	<p class="swatchLabel">output color</p>
+                    	<div class="swatch"></div>
+                    </div>
+                    <div id="code">move the sliders to get your code</div>
+                    <!-- maybe a 'copy to clipboard' button here? -->
+                </li>
+
+<!-- i don't think we're including these anymore right?
+                <li>
+                    <label for="h">H</label>
+                    <input type="text" name="hue" id="h" value="" placeholder="Hue" />
+                    <label for="s">S</label>
+                    <input type="text" name="saturation" id="s" value="" placeholder="Saturation" />
+                    <label for="l">L</label>
+                    <input type="text" name="lightness" id="l" value="" placeholder="Lightness" />
+                </li>
+-->
+                <li class="listItem slider">
+                    <input type="range" min="0" max="100" id="slider_l" />
+                    <label for="slider_l">&larr; darken / lighten &rarr;</label>
+                </li>
+                <li class="listItem slider">
+                    <input type="range" min="0" max="100" id="slider_s" />
+                    <label for="slider_s">&larr; desaturate / saturate &rarr;</label>
+                </li>
+                <li class="listItem slider">
+                    <input type="range" min="0" max="360" id="slider_h" />
+                    <label for="slider_h">&larr; adjust hue &rarr;</label>
+                </li>
+            </ul>
+        </form>
+    </section>
+
+    <footer id="footer" class="wrapper">
+    	<p><a href="">Arc90 Lab</a><br />What else goes here?</p>
+    </footer>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="js/lib/underscore-min.js"></script>
+	<script src="js/Color.js"></script>
+	<script src="js/Transforms.js"></script>
+	<script>
+
+		// If your browser doesn't support HTML5 Range sliders, then we need to
+		// use jQuery UI to handle it for us.
+		Modernizr.load({
+		  test: Modernizr.inputtypes.range,
+		  nope: 'js/no_range.js'
+		});
+
+		// Here be ugly hacky shit, just to prove that we can get
+		// correct lighten/darken values off a slider.
+
+		// REBUILD OR DIE! o_O
+
+		$(function(){
+
+			// Cache jQuery selectors
+			var $slider_l   = $('#slider_l'), // Slider: Lightness
+				$slider_s = $('#slider_s'), // Slider: Saturation
+				$slider_h = $('#slider_h'), // Slider: Hue
+				$color    = $('#color'), // Color input
+				$swatchA  = $('#swatch1 div'),
+				$swatchB  = $('#swatch2 div'),
+				$code     = $('#code') // SASS code output
+
+			// Maintain state on our swatches
+			var swatchA = swatchB = {};
+
+			// Template for SASS functions. We can nest these to make
+			// compound functions
+			var tpl = _.template("<%= func %>(<%= value %>, <%= transform %>)");
+
+			// Hoist!
+			var direction, start_color, prev, current, base, stack, sliders, transforms;
+
+			stack = [];
+			sliders = {
+				slider_h : {},
+				slider_s : {},
+				slider_l : {}
+			};
+
+			transforms = {
+
+				slider_l : function(val, base_color) {
+					var t;
+					if (val < 0) {
+						// Darken
+						t = Transforms.darken(base_color, Math.abs(val));
+						return {
+							color : new Color(t),
+							func : 'darken',
+							value : Math.abs(val)
+						}
+					} else if (val > 0) {
+						// Lighten
+						t = Transforms.lighten(base_color, Math.abs(val));
+						return {
+							color : new Color(t),
+							func : 'lighten',
+							value : Math.abs(val)
+						}
+					} else if (val === 0) {
+						//stack_remove('slider_l');
+						return {
+							color : base_color,
+							func : null,
+							value : null
+						}
+					}
+				},
+
+				slider_s : function(val, base_color) {
+					var t;
+					if (val < 0) {
+						// Darken
+						t = Transforms.desaturate(base_color, Math.abs(val));
+						return {
+							color : new Color(t),
+							func : 'desaturate',
+							value : Math.abs(val)
+						}
+					} else if (val > 0) {
+						// Lighten
+						t = Transforms.saturate(base_color, Math.abs(val));
+						return {
+							color : new Color(t),
+							func : 'saturate',
+							value : Math.abs(val)
+						}
+					} else if (val === 0) {
+						//stack_remove('slider_s');
+						return {
+							color : base_color,
+							func : null,
+							value : null
+						}
+					}
+				},
+
+				slider_h : function(val, base_color) {
+					var t;
+					t = Transforms.adjust_hue(base_color, Math.abs(val));
+					return {
+						color : new Color(t),
+						func : 'adjust_hue',
+						value : Math.abs(val)
+					}
+				}
+			}
+
+			// =================
+			// Page interactions
+			// =================
+
+			// On page load, focus the color input
+			$('#color').focus();
+
+			// Give the input color's <li> a class of focus when #color is in focus
+			$('#color').focus(function(){
+				$(this).parent().addClass('focus');
+			}).blur(function(){
+				$(this).parent().removeClass('focus');
+			});
+
+			// give the form a class of 'active' when the color is validated
+			$('#color').keyup(function(){
+				colorValue = $(this).val();
+				// when it hits 6 characters, fill everything in in the form
+				if (  colorValue.length > 5 ) {
+					init(colorValue); // Initialize the application
+					console.log('init!');
+					$('form').removeClass('inactive');
+					$('form').addClass('active');
+				} else {
+					$('form').addClass('inactive');
+					$('form').removeClass('active');
+				}
+			});
+
+			// ==================
+			// Event Handling
+			// ==================
+
+			$swatchA.on('transform', function(event, color){
+				$(event.target).css('background-color', color.hex);
+				$(event.target).html(color.hex);
+			});
+
+			$swatchB.on('transform', function(event, color){
+				$(event.target).css('background-color', color.hex);
+				$(event.target).html(color.hex);
+			});
+
+			// ==================
+			// Color Calculations
+			// ==================
+
+			// Initialize the swatches
+			function init(color) {
+				start_color = new Color(color);
+				$swatchA.trigger('transform', [start_color]);
+				$swatchB.trigger('transform', [start_color]);
+
+				// Initialize sliders
+				$slider_l.val(start_color.hsl.l);
+				$slider_s.val(start_color.hsl.s);
+				$slider_h.val(start_color.hsl.h);
+
+				// Initialize storage units
+				sliders.slider_l.start_val = start_color.hsl.l;
+				sliders.slider_s.start_val = start_color.hsl.s;
+				sliders.slider_h.start_val = start_color.hsl.h;
+			}
+
+			function stack_add(id) {
+				if (!_.find(stack, function(item){ return item === id })) {
+					stack.push(id);
+				}
+			}
+
+			function stack_remove(id) {
+				var index = _.indexOf(stack, id);
+				removed = stack.splice(index, 1);
+			}
+
+			
+
+			$('form').on('change', 'input[type=range]', function(e) {
+				var $el = $(e.target);
+				var val = $el.val();
+				var id = $el.attr('id');
+
+				stack_add(id);
+
+				if (id !== 'slider_h') {
+					increment = val - sliders[id].start_val;
+				} else {
+					increment = val;
+				}
+
+				sliders[id].increment = increment; // Store this for use below
+
+				//var tpl = _.template("<%= func %>(<%= value %>, <%= transform %>);");
+				// {
+				// 		color : new Color(t),
+				// 		func : 'adjust_hue',
+				// 		value : Math.abs(val)
+				// 	}
+
+
+				// Walk the stack and determine what our base colors should be.
+				// Then build the function stack
+				var output_color = start_color;
+				var output_value;
+				var transform;
+				for (var i = 0; i < stack.length; i++) {
+					if (stack[i] !== undefined) {
+						transform = transforms[stack[i]](sliders[stack[i]].increment, output_color);
+						output_color = transform.color;
+						if (output_value === undefined) {
+							output_value = tpl({
+								'func'      : transform.func,
+								'value'     : transform.color.hex,
+								'transform' : transform.value
+							});
+						} else {
+							output_value = tpl({
+								'func'      : transform.func,
+								'value'     : output_value,
+								'transform' : transform.value
+							});
+						}
+					}
+
+				};
+
+				$code.html(output_value);
+				$swatchB.trigger('transform', [output_color]);
+				
+			});
+
+		});
+	</script>
+</body>
+</html>
