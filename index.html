@@ -82,15 +82,12 @@
 		  nope: 'js/no_range.js'
 		});
 
-		// Here be ugly hacky shit, just to prove that we can get
-		// correct lighten/darken values off a slider.
-
-		// REBUILD OR DIE! o_O
+		// Here Be the Magic!
 
 		$(function(){
 
 			// Cache jQuery selectors
-			var $slider_l   = $('#slider_l'), // Slider: Lightness
+			var $slider_l = $('#slider_l'), // Slider: Lightness
 				$slider_s = $('#slider_s'), // Slider: Saturation
 				$slider_h = $('#slider_h'), // Slider: Hue
 				$color    = $('#color'), // Color input
@@ -105,9 +102,10 @@
 			// compound functions
 			var tpl = _.template("<%= func %>(<%= value %>, <%= transform %>)");
 
-			// Hoist!
+			// Hoist variables matey!
 			var direction, start_color, prev, current, base, stack, sliders, transforms;
 
+			// Define some storage vars
 			stack = [];
 			sliders = {
 				slider_h : {},
@@ -115,8 +113,12 @@
 				slider_l : {}
 			};
 
+			// These are the transform methods used by the sliders. We have
+			// them in an object so we can call them easily from a loop
+			// using the id's of the inputs themselves as hooks.
 			transforms = {
 
+				// Lighten/Darken
 				slider_l : function(val, base_color) {
 					var t;
 					if (val < 0) {
@@ -145,6 +147,7 @@
 					}
 				},
 
+				// Saturate/Desaturate
 				slider_s : function(val, base_color) {
 					var t;
 					if (val < 0) {
@@ -173,6 +176,7 @@
 					}
 				},
 
+				// Adjust Hue
 				slider_h : function(val, base_color) {
 					var t;
 					t = Transforms.adjust_hue(base_color, Math.abs(val));
