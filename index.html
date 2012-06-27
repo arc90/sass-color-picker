@@ -136,7 +136,7 @@
 							value : Math.abs(val)
 						}
 					} else if (val === 0) {
-						//stack_remove('slider_l');
+						stack_remove('slider_l');
 						return {
 							color : base_color,
 							func : null,
@@ -164,7 +164,7 @@
 							value : Math.abs(val)
 						}
 					} else if (val === 0) {
-						//stack_remove('slider_s');
+						stack_remove('slider_s');
 						return {
 							color : base_color,
 							func : null,
@@ -294,17 +294,25 @@
 						transform = transforms[stack[i]](sliders[stack[i]].increment, output_color);
 						output_color = transform.color;
 						if (output_value === undefined) {
-							output_value = tpl({
-								'func'      : transform.func,
-								'value'     : transform.color.hex,
-								'transform' : transform.value
-							});
+							if (transform.func === null) {
+								output_value = transform.color.hex;
+							} else {
+								output_value = tpl({
+									'func'      : transform.func,
+									'value'     : transform.color.hex,
+									'transform' : transform.value
+								});
+							}							
 						} else {
-							output_value = tpl({
-								'func'      : transform.func,
-								'value'     : output_value,
-								'transform' : transform.value
-							});
+							if (transform.func === null) {
+								output_value = output_value;
+							} else {
+								output_value = tpl({
+									'func'      : transform.func,
+									'value'     : output_value,
+									'transform' : transform.value
+								});
+							}
 						}
 					}
 
