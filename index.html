@@ -295,11 +295,11 @@
 						output_color = transform.color;
 						if (output_value === undefined) {
 							if (transform.func === null) {
-								output_value = transform.color.hex;
+								output_value = start_color.hex;
 							} else {
 								output_value = tpl({
 									'func'      : transform.func,
-									'value'     : transform.color.hex,
+									'value'     : start_color.hex,
 									'transform' : transform.value
 								});
 							}							

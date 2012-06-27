@@ -59,3 +59,9 @@ $ref : #003399;
 .adjust_hue_5 {
 	color: adjust_hue($ref, 540);
 }
+
+// Complete color stack
+
+.func_stack_a {
+	color: adjust_hue(desaturate(lighten(#003399, 38), 31), 117);
+}
