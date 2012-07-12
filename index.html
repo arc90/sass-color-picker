@@ -38,16 +38,6 @@
                     <!-- maybe a 'copy to clipboard' button here? -->
                 </li>
 
-<!-- i don't think we're including these anymore right?
-                <li>
-                    <label for="h">H</label>
-                    <input type="text" name="hue" id="h" value="" placeholder="Hue" />
-                    <label for="s">S</label>
-                    <input type="text" name="saturation" id="s" value="" placeholder="Saturation" />
-                    <label for="l">L</label>
-                    <input type="text" name="lightness" id="l" value="" placeholder="Lightness" />
-                </li>
--->
                 <li class="listItem slider">
                     <input type="range" min="0" max="100" id="slider_l" />
                     <label for="slider_l">&larr; darken / lighten &rarr;</label>
@@ -264,17 +254,19 @@
 				sliders.slider_h.start_val = start_color.hsl.h;
 			}
 
+			// Push a slider reference onto the stack - unless it
+			// already exists
 			function stack_add(id) {
 				if (!_.find(stack, function(item){ return item === id })) {
 					stack.push(id);
 				}
 			}
 
+			// Remove an existing slide reference from the stack
 			function stack_remove(id) {
 				var index = _.indexOf(stack, id);
 				removed = stack.splice(index, 1);
 			}
-
 
 
 			$('form').on('change', 'input[type=range]', function(e) {
@@ -291,14 +283,6 @@
 				}
 
 				sliders[id].increment = increment; // Store this for use below
-
-				//var tpl = _.template("<%= func %>(<%= value %>, <%= transform %>);");
-				// {
-				// 		color : new Color(t),
-				// 		func : 'adjust_hue',
-				// 		value : Math.abs(val)
-				// 	}
-
 
 				// Walk the stack and determine what our base colors should be.
 				// Then build the function stack
