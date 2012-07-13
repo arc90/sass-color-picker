@@ -289,15 +289,17 @@
 				var output_color = start_color;
 				var output_value;
 				var transform;
-				for (var i = 0; i < stack.length; i++) {
-					if (stack[i] !== undefined) {
-						transform = transforms[stack[i]](sliders[stack[i]].increment, output_color);
+
+				// REDUCE YO!
+				output_value = _.reduce(stack, function(memo, func) {
+					// if (func !== undefined) {
+						transform = transforms[func](sliders[func].increment, output_color);
 						output_color = transform.color;
-						if (output_value === undefined) {
+						if (memo === undefined) {
 							if (transform.func === null) {
-								output_value = start_color.hex;
+								return start_color.hex;
 							} else {
-								output_value = tpl({
+								return tpl({
 									'func'      : transform.func,
 									'value'     : start_color.hex,
 									'transform' : transform.value
@@ -305,18 +307,17 @@
 							}
 						} else {
 							if (transform.func === null) {
-								output_value = output_value;
+								return memo;
 							} else {
-								output_value = tpl({
+								return tpl({
 									'func'      : transform.func,
-									'value'     : output_value,
+									'value'     : memo,
 									'transform' : transform.value
 								});
 							}
 						}
-					}
-
-				};
+					// }
+				}, start_color.hex)
 
 				$code.html(output_value);
 				$swatchB.trigger('transform', [output_color]);
