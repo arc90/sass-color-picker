@@ -128,7 +128,7 @@
 						t = Transforms.darken(base_color, Math.abs(val));
 						return {
 							color : new Color(t),
-							func : 'darken',
+							func  : 'darken',
 							value : Math.abs(val)
 						}
 					} else if (val > 0) {
@@ -136,14 +136,14 @@
 						t = Transforms.lighten(base_color, Math.abs(val));
 						return {
 							color : new Color(t),
-							func : 'lighten',
+							func  : 'lighten',
 							value : Math.abs(val)
 						}
 					} else if (val === 0) {
 						stack_remove('slider_l');
 						return {
 							color : base_color,
-							func : null,
+							func  : null,
 							value : null
 						}
 					}
@@ -157,7 +157,7 @@
 						t = Transforms.desaturate(base_color, Math.abs(val));
 						return {
 							color : new Color(t),
-							func : 'desaturate',
+							func  : 'desaturate',
 							value : Math.abs(val)
 						}
 					} else if (val > 0) {
@@ -165,14 +165,14 @@
 						t = Transforms.saturate(base_color, Math.abs(val));
 						return {
 							color : new Color(t),
-							func : 'saturate',
+							func  : 'saturate',
 							value : Math.abs(val)
 						}
 					} else if (val === 0) {
 						stack_remove('slider_s');
 						return {
 							color : base_color,
-							func : null,
+							func  : null,
 							value : null
 						}
 					}
@@ -184,7 +184,7 @@
 					t = Transforms.adjust_hue(base_color, Math.abs(val));
 					return {
 						color : new Color(t),
-						func : 'adjust_hue',
+						func  : 'adjust_hue',
 						value : Math.abs(val)
 					}
 				}
@@ -210,7 +210,6 @@
 				// when it hits 6 characters, fill everything in in the form
 				if (  colorValue.length > 5 ) {
 					init(colorValue); // Initialize the application
-					console.log('init!');
 					$('form').removeClass('inactive');
 					$('form').addClass('active');
 				} else {
@@ -272,7 +271,7 @@
 			$('form').on('change', 'input[type=range]', function(e) {
 				var $el = $(e.target);
 				var val = $el.val();
-				var id = $el.attr('id');
+				var id  = $el.attr('id');
 
 				stack_add(id);
 
@@ -290,7 +289,8 @@
 				var output_value;
 				var transform;
 
-				// REDUCE YO!
+				// Use reduce to iterate over the stack and derive our
+				// final output color. We like it functional yo!
 				output_value = _.reduce(stack, function(memo, func) {
 					// if (func !== undefined) {
 						transform = transforms[func](sliders[func].increment, output_color);
@@ -326,5 +326,16 @@
 
 		});
 	</script>
+	<!-- 
+		
+		 _______  _______  _______  _______  __   __  _______ 
+		|       ||   _   ||       ||       ||  |_|  ||       |
+		|  _____||  |_|  ||  _____||  _____||       ||    ___|
+		| |_____ |       || |_____ | |_____ |       ||   |___ 
+		|_____  ||       ||_____  ||_____  ||       ||    ___|
+		 _____| ||   _   | _____| | _____| || ||_|| ||   |___ 
+		|_______||__| |__||_______||_______||_|   |_||_______|
+
+	 -->
 </body>
 </html>
