@@ -130,9 +130,11 @@ a:hover {
 /* line 67, ../scss/_css.scss */
 label {
   color: #777777;
+  margin-top: 5px;
+  display: block;
 }
 
-/* line 71, ../scss/_css.scss */
+/* line 73, ../scss/_css.scss */
 input[type="text"] {
   border: 1px solid #e0e0e0;
   border-bottom-color: #e5e5e5;
@@ -149,22 +151,22 @@ input[type="text"] {
   width: 100%;
   font-family: 'Droid Sans Mono', Courier, monospace;
 }
-/* line 87, ../scss/_css.scss */
+/* line 89, ../scss/_css.scss */
 input[type="text"]::-webkit-input-placeholder {
   color: #cccccc;
 }
-/* line 91, ../scss/_css.scss */
+/* line 93, ../scss/_css.scss */
 input[type="text"]:-moz-placeholder {
   color: #cccccc;
 }
-/* line 95, ../scss/_css.scss */
+/* line 97, ../scss/_css.scss */
 input[type="text"]:focus {
   outline: none;
   border: 1px solid #0183b7;
   box-shadow: 0 0 5px #86dcfe;
 }
 
-/* line 102, ../scss/_css.scss */
+/* line 104, ../scss/_css.scss */
 label[for="color"] {
   position: absolute;
   top: .75em;
@@ -173,23 +175,138 @@ label[for="color"] {
   color: #cccccc;
 }
 
+/* line 112, ../scss/_css.scss */
+.fakeSlider {
+  margin: 0 auto;
+  width: 75%;
+}
+
+/* line 117, ../scss/_css.scss */
+.ui-slider {
+  position: relative;
+}
+
+/* line 121, ../scss/_css.scss */
+.ui-widget-content {
+  border-top: 1px solid #C5C5C5;
+  border-bottom: 1px solid #C5C5C5;
+  height: 4px;
+}
+
+/* line 127, ../scss/_css.scss */
+.ui-slider-handle {
+  background: transparent url(../img/range-handle.png) no-repeat;
+  position: absolute;
+  z-index: 10;
+  bottom: -9px;
+  height: 22px;
+  margin-left: -1%;
+  cursor: default;
+  width: 20px;
+  outline: none;
+}
+
+/* line 139, ../scss/_css.scss */
+.flyout {
+  background-color: white;
+  border: 1px solid #EBEBEB;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'myriad-pro', helvetica, arial, sans-serif;
+  color: #353535;
+  display: none;
+  left: 20%;
+  padding: .5em;
+  position: absolute;
+  text-align: center;
+  top: 130px;
+  z-index: 300;
+  width: 60%;
+}
+
+/* line 159, ../scss/_css.scss */
+.flyout p {
+  color: #bbb;
+  font-size: .8em;
+}
+
+/* line 164, ../scss/_css.scss */
+.flyout input {
+  color: #7e7e7e7;
+  font-size: 0.75em;
+  line-height: 1.2;
+  margin-top: 0.5em;
+  text-align: center;
+  outline: none;
+}
+
+/* line 174, ../scss/_css.scss */
+.flyout a.close,
+.flyout a.close:hover {
+  background-color: #BBB;
+  background-image: none;
+  border-radius: 15px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: normal;
+  height: 22px;
+  line-height: 1.1;
+  opacity: 1;
+  overflow: hidden;
+  padding-top: 5px;
+  position: absolute;
+  right: -6px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  top: -6px;
+  width: 22px;
+}
+
+/* line 196, ../scss/_css.scss */
+input[type='range'] {
+  -webkit-appearance: none;
+  border-top: 1px solid #C5C5C5;
+  border-bottom: 1px solid #C5C5C5;
+  height: 4px;
+}
+
+/* line 203, ../scss/_css.scss */
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  z-index: 100;
+  position: relative;
+  top: 0px;
+  height: 22px;
+  margin-left: -1%;
+  cursor: default;
+  width: 20px;
+  outline: none;
+  background-image: url("../img/range-handle.png");
+  background-repeat: no-repeat;
+}
+
 /*
     PAGE HEADER
 
     SassMe page title styles
 */
-/* line 115, ../scss/_css.scss */
+/* line 222, ../scss/_css.scss */
 #header {
   text-align: center;
   border-bottom: 3px double #E9E9E9;
 }
-/* line 119, ../scss/_css.scss */
+/* line 226, ../scss/_css.scss */
 #header h1 {
   font-weight: 700;
   font-size: 32px;
   line-height: 1em;
 }
-/* line 124, ../scss/_css.scss */
+/* line 231, ../scss/_css.scss */
 #header p {
   font-size: 0.75em;
   line-height: 1.4em;
@@ -203,7 +320,7 @@ label[for="color"] {
 
     Styles for each <li> item
 */
-/* line 138, ../scss/_css.scss */
+/* line 245, ../scss/_css.scss */
 .listItem {
   text-align: center;
   margin-bottom: 40px;
@@ -215,41 +332,41 @@ label[for="color"] {
   -o-transition: .5s all ease;
   transition: .5s all ease;
 }
-/* line 152, ../scss/_css.scss */
+/* line 259, ../scss/_css.scss */
 .listItem.slider {
   margin: 20px 0;
 }
-/* line 155, ../scss/_css.scss */
+/* line 262, ../scss/_css.scss */
 .listItem.slider input {
   display: block;
   width: 75%;
   margin: 0 auto;
 }
-/* line 160, ../scss/_css.scss */
+/* line 267, ../scss/_css.scss */
 .listItem.slider label {
   font-size: 0.75em;
 }
-/* line 165, ../scss/_css.scss */
+/* line 272, ../scss/_css.scss */
 .listItem#colorInput {
   width: 300px;
   margin: 40px auto;
 }
 
-/* line 175, ../scss/_css.scss */
+/* line 282, ../scss/_css.scss */
 .focus label,
 .focus #help {
   color: #0183b7;
 }
-/* line 178, ../scss/_css.scss */
+/* line 285, ../scss/_css.scss */
 .focus #help {
   opacity: 1;
 }
 
-/* line 184, ../scss/_css.scss */
+/* line 291, ../scss/_css.scss */
 .inactive .listItem {
   opacity: .15;
 }
-/* line 187, ../scss/_css.scss */
+/* line 294, ../scss/_css.scss */
 .inactive .listItem#colorInput {
   opacity: 1;
 }
@@ -259,29 +376,29 @@ label[for="color"] {
 
     Styles for the main content swatches
 */
-/* line 198, ../scss/_css.scss */
+/* line 305, ../scss/_css.scss */
 .swatchContainer {
   width: 50%;
   background: #fff;
   color: #fff;
   float: left;
 }
-/* line 204, ../scss/_css.scss */
+/* line 311, ../scss/_css.scss */
 .swatchContainer .swatch {
   height: 200px;
   width: 100%;
 }
-/* line 210, ../scss/_css.scss */
+/* line 317, ../scss/_css.scss */
 .swatchContainer .swatchLabel {
   color: #777777;
   font-size: 0.75em;
 }
-/* line 217, ../scss/_css.scss */
+/* line 324, ../scss/_css.scss */
 .swatchContainer#swatch1 .swatchLabel {
   text-align: right;
   margin-right: 1em;
 }
-/* line 224, ../scss/_css.scss */
+/* line 331, ../scss/_css.scss */
 .swatchContainer#swatch2 .swatchLabel {
   text-align: left;
   margin-left: 1em;
@@ -292,7 +409,7 @@ label[for="color"] {
 
     Styles for individual elements on the page
 */
-/* line 237, ../scss/_css.scss */
+/* line 344, ../scss/_css.scss */
 #code {
   font-family: 'Droid Sans Mono', Courier, monospace;
   font-size: 0.875em;
@@ -302,7 +419,7 @@ label[for="color"] {
   background: #f7f7f7;
 }
 
-/* line 245, ../scss/_css.scss */
+/* line 352, ../scss/_css.scss */
 #help {
   opacity: 0;
   display: block;
@@ -314,7 +431,7 @@ label[for="color"] {
     FOOTER
 
 */
-/* line 256, ../scss/_css.scss */
+/* line 363, ../scss/_css.scss */
 #footer {
   font-size: 0.813em;
   text-align: center;
@@ -322,7 +439,7 @@ label[for="color"] {
   padding: 20px 0 60px;
   color: #777777;
 }
-/* line 263, ../scss/_css.scss */
+/* line 370, ../scss/_css.scss */
 #footer #kindling {
   margin: 30px 0 0 0;
 }

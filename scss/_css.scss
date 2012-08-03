@@ -66,6 +66,8 @@ a:hover {
 */
 label {
     color: $lightTextColor;
+    margin-top: 5px;
+    display: block;
 }
 
 input[type="text"] {
@@ -105,6 +107,111 @@ label[for="color"] {
     left: 0;
     padding-left: 1em;
     color: $placeholderText;
+}
+
+.fakeSlider {
+    margin: 0 auto;
+    width: 75%;
+}
+
+.ui-slider {
+    position: relative;
+}
+
+.ui-widget-content {
+    border-top: 1px solid #C5C5C5;
+    border-bottom: 1px solid #C5C5C5;
+    height: 4px;
+}
+
+.ui-slider-handle {
+    background: transparent url(../img/range-handle.png) no-repeat;
+    position: absolute;
+    z-index: 10;
+    bottom: -9px;
+    height: 22px;
+    margin-left: -1%;
+    cursor: default;
+    width: 20px;
+    outline: none;
+}
+
+.flyout {
+    background-color: white;
+    border: 1px solid #EBEBEB;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'myriad-pro', helvetica, arial, sans-serif;
+    color: #353535;
+    display: none;
+    left: 20%;
+    padding: .5em;
+    position: absolute;
+    text-align: center;
+    top: 130px;
+    z-index: 300;
+    width: 60%;
+}
+
+.flyout p {
+    color: #bbb;
+    font-size: .8em;
+}
+
+.flyout input {
+    color: #7e7e7e7;
+    font-size: 0.75em;
+    line-height: 1.2;
+    margin-top: 0.5em;
+    text-align: center;
+    outline: none;
+}
+
+.flyout a.close,
+.flyout a.close:hover {
+    background-color: #BBB;
+    background-image: none;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 22px;
+    line-height: 1.1;
+    opacity: 1;
+    overflow: hidden;
+    padding-top: 5px;
+    position: absolute;
+    right: -6px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    top: -6px;
+    width: 22px;
+}
+
+input[type='range'] {  
+    -webkit-appearance: none;  
+    border-top: 1px solid #C5C5C5;
+    border-bottom: 1px solid #C5C5C5;
+    height: 4px;
+}  
+  
+input[type='range']::-webkit-slider-thumb {  
+    -webkit-appearance: none;  
+    z-index: 100;  
+    position: relative;  
+    top: 0px;
+    height: 22px;
+    margin-left: -1%;
+    cursor: default;
+    width: 20px;
+    outline: none;
+    background-image: url('../img/range-handle.png');  
+    background-repeat: no-repeat; 
 }
 
 /*

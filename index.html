@@ -17,7 +17,7 @@
     	<p>Let's put a quick little description right here about what this does.</p>
 	</header>
 
-    <section id="container" class="wrapper">
+    <section id="container" class="wrapper">      
         <form action="" method="get" accept-charset="utf-8" class="inactive">
             <ul id="content">
                 <li id="colorInput" class="listItem focus">
@@ -35,7 +35,11 @@
                     	<div class="swatch"></div>
                     </div>
                     <div id="code">move the sliders to get your code</div>
-                    <!-- maybe a 'copy to clipboard' button here? -->
+                    <div class="flyout">
+                    	<p>Copy and use the code below:</p>
+                    	<input type="text" />
+                    	<a class="close">X</a>
+                    </div>
                 </li>
 
                 <li class="listItem slider">
@@ -64,29 +68,42 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="js/lib/jquery-ui-min.js"></script>
 	<script src="js/lib/underscore-min.js"></script>
 	<script src="js/Color.js"></script>
 	<script src="js/Transforms.js"></script>
 	<script>
 
-		// If your browser doesn't support HTML5 Range sliders, then we need to
-		// use jQuery UI to handle it for us.
-		Modernizr.load({
-		  test: Modernizr.inputtypes.range,
-		  nope: 'js/no_range.js'
-		});
-
-		// I'm not sure if this is exactly how we want to handle this...
-		// But it's here to remind us to do something about providing
-		// an easy way to copy/past the output
+		// Land of the callbacks
 		$('#code').click(function(){
-			text = $(this).text();
-			window.prompt ("Copy to clipboard: Ctrl+C, Enter", text);
+			var text = $(this).text();
+
+			$('.flyout input').empty().val(text);
+			$('.flyout').fadeIn( function() {
+				$('.flyout input').select();
+				$('.flyout a').on('click', function(){
+					$('.flyout').fadeOut('fast');
+				});
+			});		
 		});
 
 		// Here Be the Magic!
 
 		$(function(){
+			// convenience so i can test. only used 3 places
+			var modOn = false;
+
+			// use jQuery UI to handle it for us.
+			if (Modernizr.inputtypes.range === modOn) {
+				var $ranges = $('input[type="range"]');
+				
+				$ranges.each(function (i, r) {
+					var rangeID = $(r).attr('id');
+					r.style.display = 'none';
+					$(r).removeAttr('id');
+					$('<div id="'+rangeID+'">').slider().insertAfter(r);
+				});
+			} 
 
 			// Cache jQuery selectors
 			var $slider_l = $('#slider_l'), // Slider: Lightness
@@ -243,9 +260,16 @@
 				$swatchB.trigger('transform', [start_color]);
 
 				// Initialize sliders
-				$slider_l.val(start_color.hsl.l);
-				$slider_s.val(start_color.hsl.s);
-				$slider_h.val(start_color.hsl.h);
+				if ( Modernizr.inputtypes.range === modOn) {
+					// the way we set these with jquery is different hence this if
+					$slider_l.slider( "option", "value", start_color.hsl.l);
+					$slider_s.slider( "option", "value", start_color.hsl.s);
+					$slider_h.slider( "option", "value", start_color.hsl.h);
+				} else {
+					$slider_l.val(start_color.hsl.l);
+					$slider_s.val(start_color.hsl.s);
+					$slider_h.val(start_color.hsl.h);
+				}
 
 				// Initialize storage units
 				sliders.slider_l.start_val = start_color.hsl.l;
@@ -267,12 +291,25 @@
 				removed = stack.splice(index, 1);
 			}
 
+			if (Modernizr.inputtypes.range === modOn) {
+				$('.ui-slider').on('slide', function(e) {
+					var $el = $(e.target);
+					var val = $(this).slider('option', 'value');
+					var id = $el.attr('id');
 
-			$('form').on('change', 'input[type=range]', function(e) {
-				var $el = $(e.target);
-				var val = $el.val();
-				var id  = $el.attr('id');
+					doShit($el, val, id);	
+				});
+			} else {
+				$('form').on('change', 'input[type=range]', function(e) {
+					var $el = $(e.target); 
+					var val = $el.val(); 
+					var id  = $el.attr('id');
 
+					doShit($el, val, id);
+				});
+			}
+
+			function doShit($el, val, id) {
 				stack_add(id);
 
 				if (id !== 'slider_h') {
@@ -322,7 +359,7 @@
 				$code.html(output_value);
 				$swatchB.trigger('transform', [output_color]);
 
-			});
+			}
 
 		});
 	</script>
