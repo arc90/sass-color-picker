@@ -66,35 +66,19 @@
     	<img src="img/kindling.png" alt="Kindling - Social Innovation Software" />
     </footer>
 
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="js/lib/jquery-ui-min.js"></script>
 	<script src="js/lib/underscore-min.js"></script>
 	<script src="js/Color.js"></script>
 	<script src="js/Transforms.js"></script>
 	<script>
-
-		// Land of the callbacks
-		$('#code').click(function(){
-			var text = $(this).text();
-
-			$('.flyout input').empty().val(text);
-			$('.flyout').fadeIn( function() {
-				$('.flyout input').select();
-				$('.flyout a').on('click', function(){
-					$('.flyout').fadeOut('fast');
-				});
-			});		
-		});
-
 		// Here Be the Magic!
-
 		$(function(){
-			// convenience so i can test. only used 3 places
-			var modOn = false;
+			// Do we have native HTML5 sliders?
+			var hasRange = Modernizr.inputtypes.range;
 
 			// use jQuery UI to handle it for us.
-			if (Modernizr.inputtypes.range === modOn) {
+			if (!hasRange) {
 				var $ranges = $('input[type="range"]');
 				
 				$ranges.each(function (i, r) {
@@ -240,6 +224,19 @@
 				}
 			});
 
+			// Clicking the code will open a flyout with a preselected
+			// input for easy copypasta
+			$('#code').click(function(){
+				var text = $(this).text();
+				$('.flyout input').empty().val(text);
+				$('.flyout').fadeIn( function() {
+					$('.flyout input').select();
+					$('.flyout a').on('click', function(){
+						$('.flyout').fadeOut('fast');
+					});
+				});		
+			});
+
 			// ==================
 			// Event Handling
 			// ==================
@@ -265,8 +262,8 @@
 				$swatchB.trigger('transform', [start_color]);
 
 				// Initialize sliders
-				if ( Modernizr.inputtypes.range === modOn) {
-					// the way we set these with jquery is different hence this if
+				if (!hasRange) {
+					// No Sliders? No problem! jQuery UI for you.
 					$slider_l.slider( "option", "value", start_color.hsl.l);
 					$slider_s.slider( "option", "value", start_color.hsl.s);
 					$slider_h.slider( "option", "value", start_color.hsl.h);
@@ -290,21 +287,20 @@
 				}
 			}
 
-			// Remove an existing slide reference from the stack
+			// Remove an existing slider reference from the stack
 			function stack_remove(id) {
 				var index = _.indexOf(stack, id);
 				removed = stack.splice(index, 1);
 			}
 
-			// Branch how we handle the slider depending on wether
+			// Branch how we handle the sliders depending on wether
 			// native HTML5 controls are present or we're using
 			// jQuery sliders.
-			if (Modernizr.inputtypes.range === modOn) {
+			if (!hasRange) {
 				$('.ui-slider').on('slide', function(e) {
 					var $el = $(e.target);
 					var val = $(this).slider('option', 'value');
-					var id = $el.attr('id');
-
+					var id  = $el.attr('id');
 					deriveTransformation($el, val, id);	
 				});
 			} else {
@@ -312,7 +308,6 @@
 					var $el = $(e.target); 
 					var val = $el.val(); 
 					var id  = $el.attr('id');
-
 					deriveTransformation($el, val, id);
 				});
 			}
