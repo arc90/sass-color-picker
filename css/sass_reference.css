@@ -1,69 +1,31 @@
-/* line 5, ../scss/sass_reference.scss */
-.lighten_1 {
-  color: #0055ff;
-}
+.lighten_1 { color: #0055ff; }
 
-/* line 9, ../scss/sass_reference.scss */
-.lighten_2 {
-  color: #99bbff;
-}
+.lighten_2 { color: #99bbff; }
 
-/* line 13, ../scss/sass_reference.scss */
-.lighten_3 {
-  color: white;
-}
+.lighten_3 { color: white; }
 
-/* line 17, ../scss/sass_reference.scss */
-.lighten_4 {
-  color: #003399;
-}
+.lighten_4 { color: #003399; }
 
-/* line 21, ../scss/sass_reference.scss */
-.lighten_red_1 {
-  color: #ff6666;
-}
+.lighten_red_1 { color: #ff6666; }
 
-/* line 27, ../scss/sass_reference.scss */
-.darken_1 {
-  color: #001133;
-}
+.darken_1 { color: #001133; }
 
-/* line 31, ../scss/sass_reference.scss */
-.darken_2 {
-  color: black;
-}
+.darken_2 { color: black; }
 
-/* line 37, ../scss/sass_reference.scss */
-.darken_4 {
-  color: #003399;
-}
+.darken_4 { color: #003399; }
 
-/* line 43, ../scss/sass_reference.scss */
-.adjust_hue_1 {
-  color: #001a99;
-}
+.adjust_hue_1 { color: #001a99; }
 
-/* line 47, ../scss/sass_reference.scss */
-.adjust_hue_2 {
-  color: #990000;
-}
+.adjust_hue_2 { color: #990000; }
 
-/* line 51, ../scss/sass_reference.scss */
-.adjust_hue_3 {
-  color: #990000;
-}
+.adjust_hue_3 { color: #990000; }
 
-/* line 55, ../scss/sass_reference.scss */
-.adjust_hue_4 {
-  color: #003399;
-}
+.adjust_hue_4 { color: #003399; }
 
-/* line 59, ../scss/sass_reference.scss */
-.adjust_hue_5 {
-  color: #996600;
-}
+.adjust_hue_5 { color: #996600; }
 
-/* line 65, ../scss/sass_reference.scss */
-.func_stack_a {
-  color: #e675a0;
-}
+.func_stack_a { color: #e675a0; }
+
+.func_stack_b { color: #d0cca4; }
+
+.func_stack_c { color: #e1df70; }

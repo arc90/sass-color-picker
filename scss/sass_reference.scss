@@ -65,3 +65,11 @@ $ref : #003399;
 .func_stack_a {
 	color: adjust_hue(desaturate(lighten(#003399, 38), 31), 117);
 }
+
+.func_stack_b {
+	color: adjust_hue(desaturate(lighten(#ff6600, 23), 68), 30);
+}
+
+.func_stack_c {
+	color: adjust_hue(desaturate(lighten(#0183b7, 30), 34), 222);
+}
