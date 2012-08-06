@@ -78,7 +78,7 @@ body {
   font: 16px/1.4em "Droid Sans", Arial, sans-serif;
   color: #333;
 }
-@media screen and (max-width:520px) {
+@media screen and (max-width: 520px) {
   /* line 21, ../scss/_css.scss */
   body {
     margin: 0;
@@ -100,7 +100,7 @@ body {
   overflow: hidden;
   margin-bottom: 20px;
 }
-@media screen and (max-width:520px) {
+@media screen and (max-width: 520px) {
   /* line 39, ../scss/_css.scss */
   #container {
     padding: 0;
@@ -130,7 +130,7 @@ a:hover {
 /* line 67, ../scss/_css.scss */
 label {
   color: #777777;
-  margin-top: 5px;
+  margin-top: 0px;
   display: block;
 }
 
@@ -387,18 +387,20 @@ input[type='range']::-webkit-slider-thumb {
 .swatchContainer .swatch {
   height: 200px;
   width: 100%;
+  padding-top: 10px;
+  font-size: 1.125em;
 }
-/* line 317, ../scss/_css.scss */
+/* line 319, ../scss/_css.scss */
 .swatchContainer .swatchLabel {
   color: #777777;
   font-size: 0.75em;
 }
-/* line 324, ../scss/_css.scss */
+/* line 326, ../scss/_css.scss */
 .swatchContainer#swatch1 .swatchLabel {
   text-align: right;
   margin-right: 1em;
 }
-/* line 331, ../scss/_css.scss */
+/* line 333, ../scss/_css.scss */
 .swatchContainer#swatch2 .swatchLabel {
   text-align: left;
   margin-left: 1em;
@@ -409,7 +411,7 @@ input[type='range']::-webkit-slider-thumb {
 
     Styles for individual elements on the page
 */
-/* line 344, ../scss/_css.scss */
+/* line 346, ../scss/_css.scss */
 #code {
   font-family: 'Droid Sans Mono', Courier, monospace;
   font-size: 0.875em;
@@ -417,9 +419,10 @@ input[type='range']::-webkit-slider-thumb {
   border: 1px solid #e9e9e9;
   padding: 5px 0;
   background: #f7f7f7;
+  cursor: pointer;
 }
 
-/* line 352, ../scss/_css.scss */
+/* line 355, ../scss/_css.scss */
 #help {
   opacity: 0;
   display: block;
@@ -431,7 +434,7 @@ input[type='range']::-webkit-slider-thumb {
     FOOTER
 
 */
-/* line 363, ../scss/_css.scss */
+/* line 366, ../scss/_css.scss */
 #footer {
   font-size: 0.813em;
   text-align: center;
@@ -439,7 +442,7 @@ input[type='range']::-webkit-slider-thumb {
   padding: 20px 0 60px;
   color: #777777;
 }
-/* line 370, ../scss/_css.scss */
+/* line 373, ../scss/_css.scss */
 #footer #kindling {
   margin: 30px 0 0 0;
 }
