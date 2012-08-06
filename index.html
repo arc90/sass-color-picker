@@ -98,10 +98,15 @@
 				var $ranges = $('input[type="range"]');
 				
 				$ranges.each(function (i, r) {
-					var rangeID = $(r).attr('id');
+					var $r   	 = $(r),
+						rangeID  = $r.attr('id'),
+						rangeMin = $r.attr('min'),
+						rangeMax = $r.attr('max');
+
 					r.style.display = 'none';
-					$(r).removeAttr('id');
-					$('<div id="'+rangeID+'">').slider().insertAfter(r);
+					$r.removeAttr('id');
+
+					$('<div id="'+rangeID+'">').slider({ max : rangeMax, min : rangeMin }).insertAfter(r);
 				});
 			} 
 
@@ -291,13 +296,16 @@
 				removed = stack.splice(index, 1);
 			}
 
+			// Branch how we handle the slider depending on wether
+			// native HTML5 controls are present or we're using
+			// jQuery sliders.
 			if (Modernizr.inputtypes.range === modOn) {
 				$('.ui-slider').on('slide', function(e) {
 					var $el = $(e.target);
 					var val = $(this).slider('option', 'value');
 					var id = $el.attr('id');
 
-					doShit($el, val, id);	
+					deriveTransformation($el, val, id);	
 				});
 			} else {
 				$('form').on('change', 'input[type=range]', function(e) {
@@ -305,11 +313,14 @@
 					var val = $el.val(); 
 					var id  = $el.attr('id');
 
-					doShit($el, val, id);
+					deriveTransformation($el, val, id);
 				});
 			}
 
-			function doShit($el, val, id) {
+			// Take the slider inputs and derive the SASS functions
+			// from the HSL colors they create using the start color
+			// as the transform point.
+			function deriveTransformation($el, val, id) {
 				stack_add(id);
 
 				if (id !== 'slider_h') {
