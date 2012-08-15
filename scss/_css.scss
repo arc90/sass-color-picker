@@ -3,7 +3,7 @@ $bodyFontSize: 16;
 $textColor: #333333;
 $lightBackgroundColor: #f7f7f7;
 $lightTextColor: #777;
-$highlightColor: #ce4ec6;
+$blue: #0183b7;
 $placeholderText: #cccccc;
 
 
@@ -13,38 +13,36 @@ $placeholderText: #cccccc;
     General page and structural styles
 */
 * {
-    @include box-sizing(border-box);
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing:    border-box;
+   box-sizing:         border-box;
 }
 
 body {
-	padding: 0 20px;
-	margin: 0;
-	font: 16px/1.4em 'Droid Sans', Arial, sans-serif;
+	padding: 0;
+	margin: 0 20px;
+	font: 16px/1.4em 'Droid Sans', Arial, sans-serif;;
 	color: #333;
-    background: #eee url(../img/background.png);
-    background-size: 400px 300px;
-    border-top: 3px solid $highlightColor;
 
-    @media screen and (max-width:565px) {
-        padding: 0;
+    @media screen and (max-width:520px) {
+        margin: 0;
     }
 }
 
 .wrapper {
-    max-width: 850px;
-    width: 850px\9; // target IE7 and 8 only
+    max-width: 800px;
+    width: 800px\9; // target IE7 and 8 only
     margin: 0 auto;
+    padding: 20px;
 }
 
 #container {
-    clear: both;
-    background: #fdfdfd;
+    padding: 0 30px 30px;
+    background: #fff;
     overflow: hidden;
-    margin-bottom: 10px;
-    @include box-shadow(#dedede 0 3px 0);
-    border: 1px solid #eeeeee;
+    margin-bottom: 20px;
 
-    @media screen and (max-width:565px) {
+    @media screen and (max-width:520px) {
         padding: 0;
     }
 }
@@ -52,30 +50,27 @@ body {
 a,
 a:link,
 a:visited {
-    color: $highlightColor;
+    color: $blue;
     text-decoration: none;
 }
 a:hover {
-    color: darken($highlightColor, 30%);
+    color: darken($blue, 30%);
     text-decoration: underline;
 }
 
 /*
-    INPUT ELEMENTS
+    GENERAL INPUT ELEMENTS
 
-    Page styles for input elements
+    General page styles for input elements
 
 */
-
 label {
     color: $lightTextColor;
-    padding-top: 5px;
+    margin-top: 0px;
     display: block;
-    text-transform: uppercase;
-    letter-spacing: .15em;
 }
 
-input#color {
+input[type="text"] {
     border: 1px solid #e0e0e0;
     border-bottom-color: #e5e5e5;
     color: $textColor;
@@ -101,19 +96,22 @@ input#color {
 
     &:focus {
         outline: none;
-        border: 1px solid $highlightColor;
-        box-shadow: 0 0 8px transparentize($highlightColor, .4);
+
+        border: 1px solid $blue;
+        box-shadow: 0 0 5px lighten($blue, 40%);
     }
 }
 label[for="color"] {
     position: absolute;
-    padding: 0 0 0 1.4em;
+    top: .75em;
+    left: 0;
+    padding-left: 1em;
     color: $placeholderText;
 }
 
 .fakeSlider {
     margin: 0 auto;
-    width: 70%;
+    width: 75%;
 }
 
 .ui-slider {
@@ -121,49 +119,99 @@ label[for="color"] {
 }
 
 .ui-widget-content {
-    border-top: 2px solid #C5C5C5;
-    border-bottom: 2px solid #C5C5C5;
-    height: 0px;
+    border-top: 1px solid #C5C5C5;
+    border-bottom: 1px solid #C5C5C5;
+    height: 4px;
 }
 
 .ui-slider-handle {
-    background: transparent url(../img/range-handle-new.png) no-repeat;
-    background-size: 20px 20px;
+    background: transparent url(../img/range-handle.png) no-repeat;
     position: absolute;
     z-index: 10;
     bottom: -9px;
-    width: 20px;
-    height: 20px;
+    height: 22px;
     margin-left: -1%;
-    cursor: pointer;
+    cursor: default;
+    width: 20px;
     outline: none;
 }
 
+.flyout {
+    background-color: white;
+    border: 1px solid #EBEBEB;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'myriad-pro', helvetica, arial, sans-serif;
+    color: #353535;
+    display: none;
+    left: 20%;
+    padding: .5em;
+    position: absolute;
+    text-align: center;
+    top: 130px;
+    z-index: 300;
+    width: 60%;
+}
+
+.flyout p {
+    color: #bbb;
+    font-size: .8em;
+}
+
+.flyout input {
+    color: #7e7e7e7;
+    font-size: 0.75em;
+    line-height: 1.2;
+    margin-top: 0.5em;
+    text-align: center;
+    outline: none;
+}
+
+.flyout a.close,
+.flyout a.close:hover {
+    background-color: #BBB;
+    background-image: none;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 22px;
+    line-height: 1.1;
+    opacity: 1;
+    overflow: hidden;
+    padding-top: 5px;
+    position: absolute;
+    right: -6px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    top: -6px;
+    width: 22px;
+}
 
 input[type='range'] {  
     -webkit-appearance: none;  
-    background-color: #ddd;
-    border-top: 1px solid #aaa;
-    border-bottom: 1px solid #eee;
-    height: 8px;
-    border-radius: 6px;
+    border-top: 1px solid #C5C5C5;
+    border-bottom: 1px solid #C5C5C5;
+    height: 4px;
 }  
   
 input[type='range']::-webkit-slider-thumb {  
-    -webkit-appearance: none;
+    -webkit-appearance: none;  
     z-index: 100;  
     position: relative;  
     top: 0px;
+    height: 22px;
+    margin-left: -1%;
+    cursor: default;
     width: 20px;
-    height: 20px;
-    cursor: pointer;
     outline: none;
+    background-image: url('../img/range-handle.png');  
     background-repeat: no-repeat; 
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    border-radius: 40px;
-    background: transparent url(../img/range-handle-new.png) no-repeat;
-    background-size: 20px 20px;
 }
 
 /*
@@ -171,50 +219,21 @@ input[type='range']::-webkit-slider-thumb {
 
     SassMe page title styles
 */
-
 #header {
-    clear: both;
-    padding: 20px 0;
-    width: 100%;
-    overflow: auto;
+    text-align: center;
+    border-bottom: 3px double #E9E9E9;
 
     h1 {
-        float: left;
-        width: 230px;
-        height: 53px;
-        overflow: visible;
-        background: url(../img/sass-me-logo.png) 0 0 no-repeat;
-        background-size: 230px 53px;
-        text-indent: -999px;
-        margin: 0 20px 0 15px;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 1em;
     }
-
-
-
-    #tagline {
-        float: left;
-        margin-top: 53px;
-        width: 50%;
-        position: relative;
-
-        @media screen and (max-width:565px) {
-            width: 100px;
-        }
-
-        p {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            font-size: (16em / $bodyFontSize);
-            line-height: 1.3em;
-            color: $lightTextColor;
-            @include text-shadow(0 1px 0 #fff);
-
-            @media screen and (max-width:565px) {
-                font-size: (12em / $bodyFontSize);
-                line-height: 1.1em
-            }
-        }
+    p {
+        font-size: (12em / $bodyFontSize);
+        line-height: 1.4em;
+        color: $lightTextColor;
+        max-width: 500px;
+        margin: .5em auto 0 auto;
     }
 }
 
@@ -225,6 +244,7 @@ input[type='range']::-webkit-slider-thumb {
 */
 .listItem {
     text-align: center;
+    margin-bottom: 40px;
     position: relative;
     opacity: 1;
     -webkit-transition: .5s all ease;
@@ -237,23 +257,21 @@ input[type='range']::-webkit-slider-thumb {
     // Would be cool to dynamically set a gradient on these
     // that way you could see what direction your colors are going...
     &.slider {
-        margin: 25px 0;
+        margin: 20px 0;
 
         input {
             display: block;
-            width: 80%;
+            width: 75%;
             margin: 0 auto;
         }
-
         label {
-            font-size: (10em / $bodyFontSize);
+            font-size: (12em / $bodyFontSize);
         }
-        a {
-            position: absolute;
-            right: 3%;
-            top: -7px;
-            font-size: (10em / $bodyFontSize);
-        }
+    }
+
+    &#colorInput {
+        width: 300px;
+        margin: 40px auto;
     }
 }
 // This will be for when the color input is in focus
@@ -262,7 +280,7 @@ input[type='range']::-webkit-slider-thumb {
 .focus {
     label,
     #help {
-        color: $highlightColor;
+        color: $blue;
     }
     #help {
         opacity: 1;
@@ -273,15 +291,9 @@ input[type='range']::-webkit-slider-thumb {
     .listItem {
         opacity: .15;
 
-
-        &#swatch1 {
+        &#colorInput {
             opacity: 1;
         }
-
-    #colorOutput{
-        opacity: 0;
-    }
-
     }
 }
 
@@ -290,89 +302,39 @@ input[type='range']::-webkit-slider-thumb {
 
     Styles for the main content swatches
 */
-
-
-// Rounding corners 
-
-@media only screen and (min-width: 565px) {
-
-    #swatch1 .swatch{
-        @include border-top-left-radius(10px);
-    }
-
-    #swatch2 .swatch{
-        @include border-top-right-radius(10px);
-    }
-
-    #container {
-        @include border-radius(10px);
-    }
-}
-
-// The pointer from Swatch 1 to Swatch 2
-
-.swatchPointer {
-    width: 0; 
-    height: 0; 
-    border-top: 150px solid transparent;
-    border-bottom: 150px solid transparent; 
-    border-left: 40px solid #fff; 
-    position: absolute;
-    z-index: 10;
-    top: 0px;
-    right: -40px;
-}
-
 .swatchContainer {
+    width: 50%;
+    background: #fff;
     color: #fff;
-    float: left;
-    position: relative;
-
-    &#swatch1{
-        width: 47%;
-    }
-    &#swatch2{
-        width: 53%;
-    }
+    float:left;
 
     .swatch {
-        height: 300px;
-        line-height: 300px;
+        height: 200px;
         width: 100%;
+        padding-top: 10px;
         font-size: (18em / $bodyFontSize);
-        font-family: 'Droid Sans Mono', Courier, monospace;
     }
-
-        #colorInput {
-            position: relative;
-            width: 130px;
-            margin: 0 auto;
-        }
-
-        #colorOutput {
-            opacity: 1;
-            width: 130px;
-            background: rgba(0,0,0,.4);
-            padding: 10px 20px;
-            border: 0px solid #000;
-            color: #fff;
-            @include border-radius(3px);
-            @include box-shadow(inset #000 0 0 4px);
-        }
 
     // Swatch labels
     .swatchLabel {
-        position: absolute;
-        width: 100%;
-        display: block;    
-        padding: 20px 0;
         color: $lightTextColor;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: .1em;
-        font-size: (10em / $bodyFontSize);
+        font-size: (12em / $bodyFontSize);
     }
 
+    // Individual swatches
+    &#swatch1 {
+        .swatchLabel {
+            text-align: right;
+            margin-right: 1em;
+        }
+    }
+
+    &#swatch2 {
+        .swatchLabel {
+            text-align: left;
+            margin-left: 1em;
+        }
+    }
 }
 
 
@@ -381,74 +343,20 @@ input[type='range']::-webkit-slider-thumb {
 
     Styles for individual elements on the page
 */
-
-.codeHelp {
-    background-color: white;
-    border: 1px solid #EBEBEB;
-    @include border-top-left-radius(10px);
-    @include border-top-right-radius(10px);
-    @include box-shadow(rgba(0,0,0,.1) 0 -4px 6px);
-    color: #353535;
-    display: none;
-    left: 20%;
-    padding: .5em;
-    position: absolute;
-    text-align: center;
-    top: 260px;
-    z-index: 400;
-    width: 60%;
-}
-
-#codeOutput {
+#code {
+    font-family: 'Droid Sans Mono', Courier, monospace;
+    font-size: (14em / $bodyFontSize);
     clear: both;
-    border-top: 1px solid darken(#eee,4);
-    border-bottom: 1px solid darken(#eee,4);
-
-    input {
-        font-family: 'Droid Sans Mono', Courier, monospace;
-        padding: 14px 0;
-        margin: 0;
-        font-size: (14em / $bodyFontSize);
-        width: 100%;
-        background: darken($lightBackgroundColor,5);
-        cursor: pointer;
-        outline: none;
-        text-align: center;
-        border: none;
-
-        &::-webkit-input-placeholder {
-           font-family: 'Droid Sans', Arial, sans-serif;
-           color: $highlightColor;
-        }
-
-        &:-moz-placeholder {
-           font-family: 'Droid Sans', Arial, sans-serif;
-           color: $highlightColor;
-        }
-
-        &:hover {
-            color: $highlightColor;
-        }
-
-        &:focus {
-            background: $highlightColor;
-            color: #fff;
-        }    
-    }
+    border: 1px solid #e9e9e9;
+    padding: 5px 0;
+    background: $lightBackgroundColor;
+    cursor: pointer;
 }
-
-#initialHelp {
+#help {
     opacity: 0;
-    font-family: "Droid Sans", Helvetica, Arial;
-    position: absolute;
-    left: 80%; // Animates to 45%
-    top: 40%;
+    display: block;
     color: $lightTextColor;
     font-size: (14em / $bodyFontSize);
-    line-height: 4em;
-    width: 400px;
-    color: $highlightColor;
-    z-index: 400;
 }
 
 /*
@@ -456,53 +364,13 @@ input[type='range']::-webkit-slider-thumb {
 
 */
 #footer {
-    font-size: (10em / $bodyFontSize);
-    font-weight: bold;
-    line-height: 1.3em;
-    padding: 10px 20px ;
-    color: $lightTextColor;
-    @include text-shadow(0 1px 0 #fff);
-    clear: both;
+   font-size: (13em / $bodyFontSize);
+   text-align: center;
+   border-top: 3px double #E9E9E9;
+   padding: 20px 0 60px;
+   color: $lightTextColor;
 
-    @media screen and (max-width:565px) {
-        div {
-            width: 100%;
-            text-align: center;
-            float: none;
-            margin: 20px 0;
-        }
-        img {
-            float: none;
-            width: 20%;
-        }
-    }
-
-    @media screen and (min-width:565px) {
-
-        #arc90 {
-            float: left;
-            width: 50%;
-            border-right: 1px solid #ddd;
-
-            img {
-                float: left;
-                width: 75px;
-                height: 29px;
-                margin-right: 10px;
-            }
-        }
-
-        #kindling {
-            text-align: right;
-            float: right;
-            width: 50%;
-
-            img {
-                float: right;
-                width: 82px;
-                height: 29px;
-                margin-left: 10px;
-            }
-        }
-    }
+   #kindling {
+        margin: 30px 0 0 0;
+   }
 }

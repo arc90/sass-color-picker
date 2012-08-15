@@ -1,4 +1,3 @@
 // Possibly break these up ...
-@import "compass/css3";	// Adding CSS3 mixins
-@import "reset";		// Eric Meyer's CSS reset
-@import "css";			// General CSS styles
+@import "_reset";     // Eric Meyer's CSS reset
+@import "_css";       // General CSS styles
