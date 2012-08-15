@@ -15,44 +15,58 @@
 <body>
 
 	<header id="header" class="wrapper">
-    	<h1>Sass Me</h1>
-    	<p>Visualize <a href="http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html">SASS color functions</a> in real-time without compiling.</p>
+		<h1>Sass Me</h1>
+		<div id="tagline">
+			<p>Visualize <a href="http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html" target="_blank">SASS color functions</a> in <wbr/>real-time without compiling.</p>
+		</div>
 	</header>
 
-    <section id="container" class="wrapper">      
+    <section id="container" class="wrapper">   
+
         <form action="" method="get" accept-charset="utf-8" class="inactive">
             <ul id="content">
-                <li id="colorInput" class="listItem focus">
-                    <label for="color">#</label>
-                    <input type="text" name="color" id="color" maxlength="6" placeholder="0183B7" />
-                    <span id="help">go ahead, insert a hexadecimal value</span>
+
+				<li id="swatch1" class="listItem swatchContainer">
+					<p class="swatchLabel">Input color</p>
+					<div class="swatch">
+						<div id="colorInput">
+							<label for="color">#</label>
+							<input type="text" name="color" id="color" maxlength="6" placeholder="0183B7" />
+							<div id="initialHelp">
+								&larr; Go ahead, give us a hex code
+							</div>
+						</div>
+
+						<div class="swatchPointer"></div>
+					</div>
+				</li>
+
+                <li id="swatch2" class="listItem swatchContainer">
+                	<p class="swatchLabel">Output color</p>
+                	<div class="swatch"><span id="colorOutput"></span></div>
                 </li>
+
                 <li class="listItem">
-                	<div id="swatch1" class="swatchContainer">
-                		<p class="swatchLabel">input color</p>
-                    	<div class="swatch"></div>
-                    </div>
-                    <div id="swatch2" class="swatchContainer">
-                    	<p class="swatchLabel">output color</p>
-                    	<div class="swatch"></div>
-                    </div>
-                    <div id="code">move the sliders to get your code</div>
-                    <div class="flyout">
+                	<div id="codeOutput">
+						<input type="text" id="code" tabindex="-1" readonly="readonly" placeholder="Fiddle with the sliders to get the SASS" />
+	                </div>
+                    <div class="codeHelp">
                     	<p>Copy and use the code below:</p>
-                    	<input type="text" />
-                    	<a class="close">X</a>
                     </div>
                 </li>
 
                 <li class="listItem slider">
+                    <a href="#">Reset</a>
                     <input type="range" min="0" max="100" id="slider_l" />
-                    <label for="slider_l">&larr; darken / lighten &rarr;</label>
+                    <label for="slider_l">&larr; darken | lighten &rarr;</label>
                 </li>
                 <li class="listItem slider">
+                	<a href="#">Reset</a>
                     <input type="range" min="0" max="100" id="slider_s" />
-                    <label for="slider_s">&larr; desaturate / saturate &rarr;</label>
+                    <label for="slider_s">&larr; desaturate | saturate &rarr;</label>
                 </li>
                 <li class="listItem slider">
+                	<a href="#">Reset</a>
                     <input type="range" min="0" max="360" id="slider_h" />
                     <label for="slider_h">&larr; adjust hue &rarr;</label>
                 </li>
@@ -61,11 +75,16 @@
     </section>
 
     <footer id="footer" class="wrapper">
-    	<img src="img/arc90-logo.png" alt="Arc90" />
-    	<p>A tool from the <a href="http://lab.arc90.com/">Arc90 Lab</a></p>
-    	<p>Source is on <a href="https://github.com/arc90/sass-color-picker">Github</a></p>
-    	<p id="kindling">SASS Me inspired by social innovation software <a href="http://kindlingapp.com/">Kindling</a>.</p>
-    	<img src="img/kindling.png" alt="Kindling - Social Innovation Software" />
+    	<div id="arc90">
+	    	<a href="https://github.com/arc90/sass-color-picker"><img src="img/arc90-logo.png" alt="Arc90" /></a>
+	    	<p><strong>A tool from the <a href="http://lab.arc90.com/">Arc90 Lab</a></strong></p>
+	    	<p>Source is on <a href="https://github.com/arc90/sass-color-picker">Github</a></p>
+	    </div>
+    	<div id="kindling">
+    		<a href="http://kindlingapp.com/"><img src="img/kindling.png" alt="Kindling - Social Innovation Software" /></a>
+    		<p>SassMe is inspired by <br>social innovation software <a href="http://kindlingapp.com/">Kindling</a>.</p>
+	    	
+	    </div>
     </footer>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -101,8 +120,8 @@
 				$slider_s = $('#slider_s'), // Slider: Saturation
 				$slider_h = $('#slider_h'), // Slider: Hue
 				$color    = $('#color'), // Color input
-				$swatchA  = $('#swatch1 div'),
-				$swatchB  = $('#swatch2 div'),
+				$swatchA  = $('#swatch1 .swatch'),
+				$swatchB  = $('#swatch2 .swatch'),
 				$code     = $('#code') // SASS code output
 
 			// Maintain state on our swatches
@@ -202,8 +221,9 @@
 			// Page interactions
 			// =================
 
-			// On page load, focus the color input
+			// On page load, focus the color input and display the initial helper text
 			$('#color').focus();
+			$('#initialHelp').delay(300).animate({opacity:'1',left:'45%'});
 
 			// Give the input color's <li> a class of focus when #color is in focus
 			$('#color').focus(function(){
@@ -216,27 +236,24 @@
 			$('#color').keyup(function(){
 				colorValue = $(this).val();
 				// when it hits 6 characters, fill everything in in the form
-				if (  colorValue.length > 5 ) {
+				if ( colorValue.length > 5 ) {
 					init(colorValue); // Initialize the application
 					$('form').removeClass('inactive');
 					$('form').addClass('active');
+					$('#initialHelp').fadeOut();
 				} else {
 					$('form').addClass('inactive');
 					$('form').removeClass('active');
 				}
 			});
 
-			// Clicking the code will open a flyout with a preselected
-			// input for easy copypasta
+			// Clicking the code will select the text in the input and give you a helpful message
+
 			$('#code').click(function(){
-				var text = $(this).text();
-				$('.flyout input').empty().val(text);
-				$('.flyout').fadeIn( function() {
-					$('.flyout input').select();
-					$('.flyout a').on('click', function(){
-						$('.flyout').fadeOut('fast');
-					});
-				});		
+				if ( $(this).not(":empty") ) {
+					$("#code").select();
+					$('.codeHelp').fadeIn();
+				}
 			});
 
 			// ==================
@@ -245,12 +262,12 @@
 
 			$swatchA.on('transform', function(event, color){
 				$(event.target).css('background-color', color.hex);
-				$(event.target).html(color.hex);
+				$(event.target).find('.swatchPointer').css('border-left-color', color.hex);
 			});
 
 			$swatchB.on('transform', function(event, color){
 				$(event.target).css('background-color', color.hex);
-				$(event.target).html(color.hex);
+				$(event.target).find("span").html(color.hex);
 			});
 
 			// ==================
@@ -295,7 +312,7 @@
 				removed = stack.splice(index, 1);
 			}
 
-			// Branch how we handle the sliders depending on wether
+			// Branch how we handle the sliders depending on whether
 			// native HTML5 controls are present or we're using
 			// jQuery sliders.
 			if (!hasRange) {
@@ -363,7 +380,7 @@
 						}
 					// }
 				}, start_color.hex)
-				$code.html(output_value);
+				$code.val(output_value);
 				$swatchB.trigger('transform', [output_color]);
 			}
 		});
