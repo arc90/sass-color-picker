@@ -45,13 +45,13 @@ input#color:focus { outline: none; border: 1px solid #ce4ec6; box-shadow: 0 0 8p
 
 label[for="color"] { position: absolute; padding: 0 0 0 1.4em; color: #cccccc; z-index: 501; }
 
-.fakeSlider { margin: 0 auto; width: 70%; }
+.fakeSlider { margin: 0 auto; width: 80%; }
 
 .ui-slider { position: relative; }
 
 .ui-widget-content { border-top: 2px solid #C5C5C5; border-bottom: 2px solid #C5C5C5; height: 0px; }
 
-.ui-slider-handle { background: transparent url(../img/range-handle-new.png) no-repeat; background-size: 20px 20px; position: absolute; z-index: 10; bottom: -9px; width: 20px; height: 20px; margin-left: -1%; cursor: pointer; outline: none; }
+.ui-slider-handle { background: transparent url(../img/range-handle-new.png) no-repeat; background-size: 20px 20px; position: absolute; z-index: 10; bottom: -9px; margin-top: -3px; width: 20px; height: 20px; margin-left: -1%; cursor: pointer; outline: none; }
 
 input[type='range'] { -webkit-appearance: none; background-color: #ddd; border-top: 1px solid #aaa; border-bottom: 1px solid #eee; height: 8px; border-radius: 6px; }
 

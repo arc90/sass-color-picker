@@ -56,17 +56,17 @@
                 </li>
 
                 <li class="listItem slider">
-                    <a href="#">Reset</a>
+                    <a href="#" class="reset">Reset</a>
                     <input type="range" min="0" max="100" id="slider_l" />
                     <label for="slider_l">&larr; darken | lighten &rarr;</label>
                 </li>
                 <li class="listItem slider">
-                	<a href="#">Reset</a>
+                	<a href="#" class="reset">Reset</a>
                     <input type="range" min="0" max="100" id="slider_s" />
                     <label for="slider_s">&larr; desaturate | saturate &rarr;</label>
                 </li>
                 <li class="listItem slider">
-                	<a href="#">Reset</a>
+                	<a href="#" class="reset">Reset</a>
                     <input type="range" min="0" max="360" id="slider_h" />
                     <label for="slider_h">&larr; adjust hue &rarr;</label>
                 </li>
@@ -111,18 +111,25 @@
 					r.style.display = 'none';
 					$r.removeAttr('id');
 
-					$('<div id="'+rangeID+'">').slider({ max : rangeMax, min : rangeMin }).insertAfter(r);
+					$('<div id="'+rangeID+'" class="fakeSlider">').slider({ max : rangeMax, min : rangeMin }).insertAfter(r);
 				});
 			} 
 
 			// Cache jQuery selectors
-			var $slider_l = $('#slider_l'), // Slider: Lightness
-				$slider_s = $('#slider_s'), // Slider: Saturation
-				$slider_h = $('#slider_h'), // Slider: Hue
-				$color    = $('#color'), // Color input
-				$swatchA  = $('#swatch1 .swatch'),
-				$swatchB  = $('#swatch2 .swatch'),
-				$code     = $('#code') // SASS code output
+			var $slider_l   = $('#slider_l'), // Slider: Lightness
+				$slider_s   = $('#slider_s'), // Slider: Saturation
+				$slider_h   = $('#slider_h'), // Slider: Hue
+				$color      = $('#color'), // Color input
+				$swatchA    = $('#swatch1 .swatch'),
+				$swatchB    = $('#swatch2 .swatch'),
+				$code       = $('#code'), // SASS code output
+				$codeOutput = $('#codeOutput');
+
+			var channel_map = {
+				h : 'hue',
+				s : 'saturation',
+				l : 'lightness'
+			}
 
 			// Maintain state on our swatches
 			var swatchA = swatchB = {};
@@ -222,18 +229,18 @@
 			// =================
 
 			// On page load, focus the color input and display the initial helper text
-			$('#color').focus();
+			$color.focus();
 			$('#initialHelp').delay(300).animate({opacity:'1',left:'45%'});
 
 			// Give the input color's <li> a class of focus when #color is in focus
-			$('#color').focus(function(){
+			$color.focus(function(){
 				$(this).parent().addClass('focus');
 			}).blur(function(){
 				$(this).parent().removeClass('focus');
 			});
 
 			// give the form a class of 'active' when the color is validated
-			$('#color').keyup(function(){
+			$color.keyup(function(){
 				colorValue = $(this).val();
 				// when it hits 6 characters, fill everything in in the form
 				if ( colorValue.length > 5 ) {
@@ -247,14 +254,42 @@
 				}
 			});
 
-			// Clicking the code will select the text in the input and give you a helpful message
 
-			$('#code').click(function(){
-				if ( $(this).not(":empty") ) {
-					$("#code").select();
-					$('.codeHelp').fadeIn();
+			// Clicking the code will select the text in the input and give you a helpful message
+			$codeOutput.data('state', 'default');
+			$codeOutput.on('remove', function(){
+				if ($codeOutput.data('state') === 'default') {
+					// Assign a handler to bring up help message
+					$code.click(function(){
+						if ( $(this).not(":empty") ) {
+							$code.select();
+							$('.codeHelp').fadeIn();
+						}
+					});
+					$codeOutput.data('state', 'active');
 				}
-			});
+			})
+
+			$('.reset').click(function(e){
+				e.preventDefault();
+				var slider = $(this).parent().find('label').attr('for');
+				if (slider) {
+					var channel   = slider.split('_')[1];
+					var reset_val = (channel === 'h') ? 0 : start_color[channel_map[channel]]();
+
+					if (!hasRange) {
+						// jQuery UI slider
+						$('#' + slider).slider('value', reset_val);
+						deriveTransformation($('#' + slider), reset_val, slider);
+					} else {
+						// Reset native HTML5 slider
+						$('#' + slider).val(reset_val);
+						deriveTransformation($('#' + slider), reset_val, slider);
+					}
+				}
+
+			})
+
 
 			// ==================
 			// Event Handling
@@ -320,7 +355,8 @@
 					var $el = $(e.target),
 						val = $(this).slider('option', 'value'),
 						id  = $el.attr('id');
-					deriveTransformation($el, val, id);	
+					deriveTransformation($el, val, id);
+					$codeOutput.trigger('remove');
 				});
 			} else {
 				$('form').on('change', 'input[type=range]', function(e) {
@@ -328,6 +364,7 @@
 						val = $el.val(),
 						id  = $el.attr('id');
 					deriveTransformation($el, val, id);
+					$codeOutput.trigger('remove');
 				});
 			}
 
@@ -335,6 +372,7 @@
 			// from the HSL colors they create using the start color
 			// as the transform point.
 			function deriveTransformation($el, val, id) {
+
 				stack_add(id);
 
 				if (id !== 'slider_h') {
@@ -355,7 +393,7 @@
 				// final output color. We like it functional yo!
 				output_value = _.reduce(stack, function(memo, func) {
 					// if (func !== undefined) {
-						transform = transforms[func](sliders[func].increment, output_color);
+						transform    = transforms[func](sliders[func].increment, output_color);
 						output_color = transform.color;
 						if (memo === undefined) {
 							if (transform.func === null) {
