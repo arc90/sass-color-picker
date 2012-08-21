@@ -82,8 +82,7 @@
 	    </div>
     	<div id="kindling">
     		<a href="http://kindlingapp.com/"><img src="img/kindling.png" alt="Kindling - Social Innovation Software" /></a>
-    		<p>SassMe is inspired by <br>social innovation software <a href="http://kindlingapp.com/">Kindling</a>.</p>
-	    	
+    		<p>SassMe is inspired by <br>social innovation software</p>
 	    </div>
     </footer>
 
@@ -311,8 +310,15 @@
 						deriveTransformation($('#' + slider), reset_val, slider);
 					}
 				}
-
 			});
+
+			// Fade out the code help message
+			var throttle_code_help = _.throttle(checkCodeHelp, 300);
+			function checkCodeHelp() {
+				if ($('.codeHelp').css('display') === 'block') {
+					$('.codeHelp').fadeOut('fast');
+				}
+			}
 
 			// ==================
 			// Event Handling
@@ -352,6 +358,13 @@
 				$output_clr.css('display', 'block');
 				$input_clr.trigger('transform', [getInverseColor(start_color)]);
 				$output_clr.trigger('transform', [getInverseColor(start_color)]);
+
+				// If we have a previous value, clear the stack and labels
+				if ($code.val() !== '') {
+					$code.val('');
+					$code.attr('placeholder', 'Fiddle with the sliders to get the SASS');
+					stack = [];
+				}
 
 				// Initialize sliders
 				if (!hasRange) {
@@ -405,6 +418,8 @@
 				});
 			}
 
+
+
 			// Create the inverse b/w version of a color. Used in labels.
 			function getInverseColor(color_object) {
 				var inverse_rgb   = _.map(color_object.rgb, function(num, key){ return 255 - num; }),
@@ -420,6 +435,7 @@
 			// as the transform point.
 			function deriveTransformation($el, val, id) {
 
+				throttle_code_help();
 				stack_add(id);
 
 				if (id !== 'slider_h') {
