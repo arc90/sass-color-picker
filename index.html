@@ -239,11 +239,19 @@
 				$(this).parent().removeClass('focus');
 			});
 
+			// Hex validation rule
+			var valid_hex = /[0-9A-Fa-f]/g;
+
 			// give the form a class of 'active' when the color is validated
 			$color.keyup(function(){
-				colorValue = $(this).val();
+
+				// Only allow valid Hexadecimal values
+				colorValue = $(this).val().match(valid_hex);
+				colorValue = (colorValue) ? colorValue.join('') : null;
+				$(this).val(colorValue);
+
 				// when it hits 6 characters, fill everything in in the form
-				if ( colorValue.length > 5 ) {
+				if ( colorValue && colorValue.length > 5 ) {
 					init(colorValue); // Initialize the application
 					$('form').removeClass('inactive');
 					$('form').addClass('active');
