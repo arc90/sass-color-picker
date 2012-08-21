@@ -93,7 +93,10 @@
 	<script src="js/Color.js"></script>
 	<script src="js/Transforms.js"></script>
 	<script>
-		// Here Be the Magic!
+		// ==================
+		// Here be the magic!
+		// ==================
+
 		$(function(){
 			// Do we have native HTML5 sliders?
 			var hasRange = Modernizr.inputtypes.range;
@@ -125,6 +128,7 @@
 				$code       = $('#code'), // SASS code output
 				$codeOutput = $('#codeOutput');
 
+			// We use these to dynamically call methods on Color
 			var channel_map = {
 				h : 'hue',
 				s : 'saturation',
@@ -298,7 +302,6 @@
 
 			})
 
-
 			// ==================
 			// Event Handling
 			// ==================
@@ -440,7 +443,17 @@
 		 _____| ||   _   | _____| | _____| || ||_|| ||   |___ 
 		|_______||__| |__||_______||_______||_|   |_||_______|
 
-		An Arc90 Labs Joint
+		an Arc90 Lab Project, (c) 2012 Arc90, all rights reserved
+
+		GitHub: https://github.com/arc90/sass-color-picker
+
+		Authors:
+
+		* Jim Nielsen
+		* Darren Newton
+		* Robert Petro
+		* Matt Quintanilla
+		* Jesse Reiner
 
 	 -->
 </body>
