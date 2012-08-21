@@ -127,7 +127,9 @@
 				$swatchB    = $('#swatch2 .swatch'),
 				$code       = $('#code'), // SASS code output
 				$codeOutput = $('#codeOutput'),
-				$form       = $('form');
+				$form       = $('form'),
+				$output_clr = $('#swatch2 .swatchLabel'),
+				$input_clr  = $('#swatch1 .swatchLabel');
 
 			// We use these to dynamically call methods on Color
 			var channel_map = {
@@ -310,7 +312,7 @@
 					}
 				}
 
-			})
+			});
 
 			// ==================
 			// Event Handling
@@ -326,15 +328,30 @@
 				$(event.target).find("span").html(color.hex);
 			});
 
+			$output_clr.on('transform', function(event, color){
+				$(event.target).css('color', color);
+			})
+
+			$input_clr.on('transform', function(event, color){
+				$(event.target).css('color', color);
+			})
+
 			// ==================
 			// Color Calculations
 			// ==================
 
-			// Initialize the swatches
+			// Kick it.
 			function init(color) {
+				// Initialize the swatches
 				start_color = new Color(color);
 				$swatchA.trigger('transform', [start_color]);
 				$swatchB.trigger('transform', [start_color]);
+
+				// Show our labels & color them
+				$input_clr.css('display', 'block');
+				$output_clr.css('display', 'block');
+				$input_clr.trigger('transform', [getInverseColor(start_color)]);
+				$output_clr.trigger('transform', [getInverseColor(start_color)]);
 
 				// Initialize sliders
 				if (!hasRange) {
@@ -386,6 +403,16 @@
 					deriveTransformation($el, val, id);
 					$codeOutput.trigger('remove');
 				});
+			}
+
+			// Create the inverse b/w version of a color. Used in labels.
+			function getInverseColor(color_object) {
+				var inverse_rgb   = _.map(color_object.rgb, function(num, key){ return 255 - num; }),
+					inverse_color = new Color('#ffffff'),
+					mod_color     = new Color(inverse_color.rgb2hex({r : inverse_rgb[0], g : inverse_rgb[1], b : inverse_rgb[2]})),
+					mod_hsl       = mod_color.mod({s : 0});
+
+				return mod_color.hsl2hex(mod_hsl);
 			}
 
 			// Take the slider inputs and derive the SASS functions
@@ -440,6 +467,7 @@
 				}, start_color.hex)
 				$code.val(output_value);
 				$swatchB.trigger('transform', [output_color]);
+				$output_clr.trigger('transform', [getInverseColor(output_color)]);
 			}
 		});
 	</script>

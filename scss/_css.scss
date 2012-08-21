@@ -374,7 +374,7 @@ input[type='range']::-webkit-slider-thumb {
     .swatchLabel {
         position: absolute;
         width: 100%;
-        display: block;    
+        display: none;    
         padding: 20px 0;
         color: $lightTextColor;
         text-align: center;

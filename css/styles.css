@@ -97,7 +97,7 @@ input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 1
 .swatchContainer .swatch { height: 300px; line-height: 300px; width: 100%; font-size: 1.125em; font-family: 'Droid Sans Mono', Courier, monospace; }
 .swatchContainer #colorInput { position: relative; width: 130px; margin: 0 auto; }
 .swatchContainer #colorOutput { opacity: 1; width: 130px; background: rgba(0, 0, 0, 0.4); padding: 10px 20px; border: 0px solid #000; color: #fff; position: relative; z-index: 500; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset black 0 0 4px; -moz-box-shadow: inset black 0 0 4px; box-shadow: inset black 0 0 4px; }
-.swatchContainer .swatchLabel { position: absolute; width: 100%; display: block; padding: 20px 0; color: #777777; text-align: center; text-transform: uppercase; letter-spacing: .1em; font-size: 0.625em; }
+.swatchContainer .swatchLabel { position: absolute; width: 100%; display: none; padding: 20px 0; color: #777777; text-align: center; text-transform: uppercase; letter-spacing: .1em; font-size: 0.625em; }
 
 /* INDIVIDUAL ELEMENTS
  Styles for individual elements on the page
