@@ -126,7 +126,8 @@
 				$swatchA    = $('#swatch1 .swatch'),
 				$swatchB    = $('#swatch2 .swatch'),
 				$code       = $('#code'), // SASS code output
-				$codeOutput = $('#codeOutput');
+				$codeOutput = $('#codeOutput'),
+				$form       = $('form');
 
 			// We use these to dynamically call methods on Color
 			var channel_map = {
@@ -228,7 +229,7 @@
 							value : null
 						}
 					}
-					
+
 					return {
 						color : new Color(t),
 						func  : 'adjust_hue',
@@ -266,12 +267,12 @@
 				// when it hits 6 characters, fill everything in in the form
 				if ( colorValue && colorValue.length > 5 ) {
 					init(colorValue); // Initialize the application
-					$('form').removeClass('inactive');
-					$('form').addClass('active');
+					$form.removeClass('inactive');
+					$form.addClass('active');
 					$('#initialHelp').fadeOut();
 				} else {
-					$('form').addClass('inactive');
-					$('form').removeClass('active');
+					$form.addClass('inactive');
+					$form.removeClass('active');
 				}
 			});
 
@@ -378,7 +379,7 @@
 					$codeOutput.trigger('remove');
 				});
 			} else {
-				$('form').on('change', 'input[type=range]', function(e) {
+				$form.on('change', 'input[type=range]', function(e) {
 					var $el = $(e.target), 
 						val = $el.val(),
 						id  = $el.attr('id');
