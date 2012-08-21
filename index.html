@@ -308,8 +308,8 @@
 
 			// Remove an existing slider reference from the stack
 			function stack_remove(id) {
-				var index = _.indexOf(stack, id);
-				removed = stack.splice(index, 1);
+				var index 	= _.indexOf(stack, id);
+					removed = stack.splice(index, 1);
 			}
 
 			// Branch how we handle the sliders depending on whether
@@ -317,16 +317,16 @@
 			// jQuery sliders.
 			if (!hasRange) {
 				$('.ui-slider').on('slide', function(e) {
-					var $el = $(e.target);
-					var val = $(this).slider('option', 'value');
-					var id  = $el.attr('id');
+					var $el = $(e.target),
+						val = $(this).slider('option', 'value'),
+						id  = $el.attr('id');
 					deriveTransformation($el, val, id);	
 				});
 			} else {
 				$('form').on('change', 'input[type=range]', function(e) {
-					var $el = $(e.target); 
-					var val = $el.val(); 
-					var id  = $el.attr('id');
+					var $el = $(e.target), 
+						val = $el.val(),
+						id  = $el.attr('id');
 					deriveTransformation($el, val, id);
 				});
 			}
@@ -347,9 +347,9 @@
 
 				// Walk the stack and determine what our base colors should be.
 				// Then build the function stack
-				var output_color = start_color;
-				var output_value;
-				var transform;
+				var output_color = start_color,
+					output_value,
+					transform;
 
 				// Use reduce to iterate over the stack and derive our
 				// final output color. We like it functional yo!
