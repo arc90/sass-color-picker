@@ -90,6 +90,11 @@ input#color {
     height: 44px;
     width: 100%;
     font-family: 'Droid Sans Mono', Courier, monospace;
+    // We need to float the input on top of BG or we can't
+    // re-focus with ze mouse
+    position: relative;
+    z-index: 500;
+
 
     &::-webkit-input-placeholder {
        color: $placeholderText;
@@ -109,6 +114,7 @@ label[for="color"] {
     position: absolute;
     padding: 0 0 0 1.4em;
     color: $placeholderText;
+    z-index: 501;
 }
 
 .fakeSlider {
@@ -356,6 +362,9 @@ input[type='range']::-webkit-slider-thumb {
             padding: 10px 20px;
             border: 0px solid #000;
             color: #fff;
+            // We need to make this selectable
+            position: relative;
+            z-index: 500;
             @include border-radius(3px);
             @include box-shadow(inset #000 0 0 4px);
         }

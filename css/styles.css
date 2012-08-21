@@ -21,12 +21,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
 body { padding: 0 20px; margin: 0; font: 16px/1.4em "Droid Sans", Arial, sans-serif; color: #333; background: #eeeeee url(../img/background.png); background-size: 400px 300px; border-top: 3px solid #ce4ec6; }
-@media screen and (max-width: 565px) { body { padding: 0; } }
+@media screen and (max-width:565px) { body { padding: 0; } }
 
 .wrapper { max-width: 850px; width: 850px\9; margin: 0 auto; }
 
 #container { clear: both; background: #fdfdfd; overflow: hidden; margin-bottom: 10px; -webkit-box-shadow: #dedede 0 3px 0; -moz-box-shadow: #dedede 0 3px 0; box-shadow: #dedede 0 3px 0; border: 1px solid #eeeeee; }
-@media screen and (max-width: 565px) { #container { padding: 0; } }
+@media screen and (max-width:565px) { #container { padding: 0; } }
 
 a, a:link, a:visited { color: #ce4ec6; text-decoration: none; }
 
@@ -38,12 +38,12 @@ a:hover { color: #671c62; text-decoration: underline; }
 */
 label { color: #777777; padding-top: 5px; display: block; text-transform: uppercase; letter-spacing: .15em; }
 
-input#color { border: 1px solid #e0e0e0; border-bottom-color: #e5e5e5; color: #333333; box-shadow: inset 0 1px 2px #eee; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -o-border-radius: 3px; -ms-border-radius: 3px; padding-left: 2em; font-size: 1em; height: 44px; width: 100%; font-family: 'Droid Sans Mono', Courier, monospace; }
+input#color { border: 1px solid #e0e0e0; border-bottom-color: #e5e5e5; color: #333333; box-shadow: inset 0 1px 2px #eee; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -o-border-radius: 3px; -ms-border-radius: 3px; padding-left: 2em; font-size: 1em; height: 44px; width: 100%; font-family: 'Droid Sans Mono', Courier, monospace; position: relative; z-index: 500; }
 input#color::-webkit-input-placeholder { color: #cccccc; }
 input#color:-moz-placeholder { color: #cccccc; }
 input#color:focus { outline: none; border: 1px solid #ce4ec6; box-shadow: 0 0 8px rgba(206, 78, 198, 0.6); }
 
-label[for="color"] { position: absolute; padding: 0 0 0 1.4em; color: #cccccc; }
+label[for="color"] { position: absolute; padding: 0 0 0 1.4em; color: #cccccc; z-index: 501; }
 
 .fakeSlider { margin: 0 auto; width: 70%; }
 
@@ -63,9 +63,9 @@ input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 1
 #header { clear: both; padding: 20px 0; width: 100%; overflow: auto; }
 #header h1 { float: left; width: 230px; height: 53px; overflow: visible; background: url(../img/sass-me-logo.png) 0 0 no-repeat; background-size: 230px 53px; text-indent: -999px; margin: 0 20px 0 15px; }
 #header #tagline { float: left; margin-top: 53px; width: 50%; position: relative; }
-@media screen and (max-width: 565px) { #header #tagline { width: 100px; } }
+@media screen and (max-width:565px) { #header #tagline { width: 100px; } }
 #header #tagline p { position: absolute; bottom: 0; left: 0; font-size: 1em; line-height: 1.3em; color: #777777; text-shadow: 0 1px 0 white; }
-@media screen and (max-width: 565px) { #header #tagline p { font-size: 0.75em; line-height: 1.1em; } }
+@media screen and (max-width:565px) { #header #tagline p { font-size: 0.75em; line-height: 1.1em; } }
 
 /* LIST ITEMS
  Styles for each <li> item
@@ -96,7 +96,7 @@ input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 1
 .swatchContainer#swatch2 { width: 53%; }
 .swatchContainer .swatch { height: 300px; line-height: 300px; width: 100%; font-size: 1.125em; font-family: 'Droid Sans Mono', Courier, monospace; }
 .swatchContainer #colorInput { position: relative; width: 130px; margin: 0 auto; }
-.swatchContainer #colorOutput { opacity: 1; width: 130px; background: rgba(0, 0, 0, 0.4); padding: 10px 20px; border: 0px solid #000; color: #fff; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset black 0 0 4px; -moz-box-shadow: inset black 0 0 4px; box-shadow: inset black 0 0 4px; }
+.swatchContainer #colorOutput { opacity: 1; width: 130px; background: rgba(0, 0, 0, 0.4); padding: 10px 20px; border: 0px solid #000; color: #fff; position: relative; z-index: 500; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset black 0 0 4px; -moz-box-shadow: inset black 0 0 4px; box-shadow: inset black 0 0 4px; }
 .swatchContainer .swatchLabel { position: absolute; width: 100%; display: block; padding: 20px 0; color: #777777; text-align: center; text-transform: uppercase; letter-spacing: .1em; font-size: 0.625em; }
 
 /* INDIVIDUAL ELEMENTS
@@ -117,9 +117,9 @@ input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 1
 
 */
 #footer { font-size: 0.625em; font-weight: bold; line-height: 1.3em; padding: 10px 20px; color: #777777; text-shadow: 0 1px 0 white; clear: both; }
-@media screen and (max-width: 565px) { #footer div { width: 100%; text-align: center; float: none; margin: 20px 0; }
+@media screen and (max-width:565px) { #footer div { width: 100%; text-align: center; float: none; margin: 20px 0; }
   #footer img { float: none; width: 20%; } }
-@media screen and (min-width: 565px) { #footer #arc90 { float: left; width: 50%; border-right: 1px solid #ddd; }
+@media screen and (min-width:565px) { #footer #arc90 { float: left; width: 50%; border-right: 1px solid #ddd; }
   #footer #arc90 img { float: left; width: 75px; height: 29px; margin-right: 10px; }
   #footer #kindling { text-align: right; float: right; width: 50%; }
   #footer #kindling img { float: right; width: 82px; height: 29px; margin-left: 10px; } }
