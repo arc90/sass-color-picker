@@ -15,44 +15,58 @@
 <body>
 
 	<header id="header" class="wrapper">
-    	<h1>Sass Me</h1>
-    	<p>Visualize <a href="http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html">SASS color functions</a> in real-time without compiling.</p>
+		<h1>Sass Me</h1>
+		<div id="tagline">
+			<p>Visualize <a href="http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html" target="_blank">SASS color functions</a> in <wbr/>real-time without compiling.</p>
+		</div>
 	</header>
 
-    <section id="container" class="wrapper">      
+    <section id="container" class="wrapper">   
+
         <form action="" method="get" accept-charset="utf-8" class="inactive">
             <ul id="content">
-                <li id="colorInput" class="listItem focus">
-                    <label for="color">#</label>
-                    <input type="text" name="color" id="color" maxlength="6" placeholder="0183B7" />
-                    <span id="help">go ahead, insert a hexadecimal value</span>
+
+				<li id="swatch1" class="listItem swatchContainer">
+					<p class="swatchLabel">Input color</p>
+					<div class="swatch">
+						<div id="colorInput">
+							<label for="color">#</label>
+							<input type="text" name="color" id="color" maxlength="6" placeholder="0183B7" />
+							<div id="initialHelp">
+								&larr; Go ahead, give us a hex code
+							</div>
+						</div>
+
+						<div class="swatchPointer"></div>
+					</div>
+				</li>
+
+                <li id="swatch2" class="listItem swatchContainer">
+                	<p class="swatchLabel">Output color</p>
+                	<div class="swatch"><span id="colorOutput"></span></div>
                 </li>
+
                 <li class="listItem">
-                	<div id="swatch1" class="swatchContainer">
-                		<p class="swatchLabel">input color</p>
-                    	<div class="swatch"></div>
-                    </div>
-                    <div id="swatch2" class="swatchContainer">
-                    	<p class="swatchLabel">output color</p>
-                    	<div class="swatch"></div>
-                    </div>
-                    <div id="code">move the sliders to get your code</div>
-                    <div class="flyout">
+                	<div id="codeOutput">
+						<input type="text" id="code" tabindex="-1" readonly="readonly" placeholder="Fiddle with the sliders to get the SASS" />
+	                </div>
+                    <div class="codeHelp">
                     	<p>Copy and use the code below:</p>
-                    	<input type="text" />
-                    	<a class="close">X</a>
                     </div>
                 </li>
 
                 <li class="listItem slider">
+                    <a href="#" class="reset">Reset</a>
                     <input type="range" min="0" max="100" id="slider_l" />
-                    <label for="slider_l">&larr; darken / lighten &rarr;</label>
+                    <label for="slider_l">&larr; darken | lighten &rarr;</label>
                 </li>
                 <li class="listItem slider">
+                	<a href="#" class="reset">Reset</a>
                     <input type="range" min="0" max="100" id="slider_s" />
-                    <label for="slider_s">&larr; desaturate / saturate &rarr;</label>
+                    <label for="slider_s">&larr; desaturate | saturate &rarr;</label>
                 </li>
                 <li class="listItem slider">
+                	<a href="#" class="reset">Reset</a>
                     <input type="range" min="0" max="360" id="slider_h" />
                     <label for="slider_h">&larr; adjust hue &rarr;</label>
                 </li>
@@ -61,11 +75,16 @@
     </section>
 
     <footer id="footer" class="wrapper">
-    	<img src="img/arc90-logo.png" alt="Arc90" />
-    	<p>A tool from the <a href="http://lab.arc90.com/">Arc90 Lab</a></p>
-    	<p>Source is on <a href="https://github.com/arc90/sass-color-picker">Github</a></p>
-    	<p id="kindling">SASS Me inspired by social innovation software <a href="http://kindlingapp.com/">Kindling</a>.</p>
-    	<img src="img/kindling.png" alt="Kindling - Social Innovation Software" />
+    	<div id="arc90">
+	    	<a href="https://github.com/arc90/sass-color-picker"><img src="img/arc90-logo.png" alt="Arc90" /></a>
+	    	<p><strong>A tool from the <a href="http://lab.arc90.com/">Arc90 Lab</a></strong></p>
+	    	<p>Source is on <a href="https://github.com/arc90/sass-color-picker">Github</a></p>
+	    </div>
+    	<div id="kindling">
+    		<a href="http://kindlingapp.com/"><img src="img/kindling.png" alt="Kindling - Social Innovation Software" /></a>
+    		<p>SassMe is inspired by <br>social innovation software <a href="http://kindlingapp.com/">Kindling</a>.</p>
+	    	
+	    </div>
     </footer>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -74,7 +93,10 @@
 	<script src="js/Color.js"></script>
 	<script src="js/Transforms.js"></script>
 	<script>
-		// Here Be the Magic!
+		// ==================
+		// Here be the magic!
+		// ==================
+
 		$(function(){
 			// Do we have native HTML5 sliders?
 			var hasRange = Modernizr.inputtypes.range;
@@ -92,18 +114,26 @@
 					r.style.display = 'none';
 					$r.removeAttr('id');
 
-					$('<div id="'+rangeID+'">').slider({ max : rangeMax, min : rangeMin }).insertAfter(r);
+					$('<div id="'+rangeID+'" class="fakeSlider">').slider({ max : rangeMax, min : rangeMin }).insertAfter(r);
 				});
 			} 
 
 			// Cache jQuery selectors
-			var $slider_l = $('#slider_l'), // Slider: Lightness
-				$slider_s = $('#slider_s'), // Slider: Saturation
-				$slider_h = $('#slider_h'), // Slider: Hue
-				$color    = $('#color'), // Color input
-				$swatchA  = $('#swatch1 div'),
-				$swatchB  = $('#swatch2 div'),
-				$code     = $('#code') // SASS code output
+			var $slider_l   = $('#slider_l'), // Slider: Lightness
+				$slider_s   = $('#slider_s'), // Slider: Saturation
+				$slider_h   = $('#slider_h'), // Slider: Hue
+				$color      = $('#color'), // Color input
+				$swatchA    = $('#swatch1 .swatch'),
+				$swatchB    = $('#swatch2 .swatch'),
+				$code       = $('#code'), // SASS code output
+				$codeOutput = $('#codeOutput');
+
+			// We use these to dynamically call methods on Color
+			var channel_map = {
+				h : 'hue',
+				s : 'saturation',
+				l : 'lightness'
+			}
 
 			// Maintain state on our swatches
 			var swatchA = swatchB = {};
@@ -202,42 +232,75 @@
 			// Page interactions
 			// =================
 
-			// On page load, focus the color input
-			$('#color').focus();
+			// On page load, focus the color input and display the initial helper text
+			$color.focus();
+			$('#initialHelp').delay(300).animate({opacity:'1',left:'45%'});
 
 			// Give the input color's <li> a class of focus when #color is in focus
-			$('#color').focus(function(){
+			$color.focus(function(){
 				$(this).parent().addClass('focus');
 			}).blur(function(){
 				$(this).parent().removeClass('focus');
 			});
 
+			// Hex validation rule
+			var valid_hex = /[0-9A-Fa-f]/g;
+
 			// give the form a class of 'active' when the color is validated
-			$('#color').keyup(function(){
-				colorValue = $(this).val();
+			$color.keyup(function(){
+
+				// Only allow valid Hexadecimal values
+				colorValue = $(this).val().match(valid_hex);
+				colorValue = (colorValue) ? colorValue.join('') : null;
+				$(this).val(colorValue);
+
 				// when it hits 6 characters, fill everything in in the form
-				if (  colorValue.length > 5 ) {
+				if ( colorValue && colorValue.length > 5 ) {
 					init(colorValue); // Initialize the application
 					$('form').removeClass('inactive');
 					$('form').addClass('active');
+					$('#initialHelp').fadeOut();
 				} else {
 					$('form').addClass('inactive');
 					$('form').removeClass('active');
 				}
 			});
 
-			// Clicking the code will open a flyout with a preselected
-			// input for easy copypasta
-			$('#code').click(function(){
-				var text = $(this).text();
-				$('.flyout input').empty().val(text);
-				$('.flyout').fadeIn( function() {
-					$('.flyout input').select();
-					$('.flyout a').on('click', function(){
-						$('.flyout').fadeOut('fast');
+
+			// Clicking the code will select the text in the input and give you a helpful message
+			$codeOutput.data('state', 'default');
+			$codeOutput.on('remove', function(){
+				if ($codeOutput.data('state') === 'default') {
+					// Assign a handler to bring up help message
+					$code.click(function(){
+						if ( $(this).not(":empty") ) {
+							$code.select();
+							$('.codeHelp').fadeIn();
+						}
 					});
-				});		
-			});
+					$codeOutput.data('state', 'active');
+				}
+			})
+
+			$('.reset').click(function(e){
+				e.preventDefault();
+				var slider = $(this).parent().find('label').attr('for');
+				if (slider) {
+					var channel   = slider.split('_')[1];
+					var reset_val = (channel === 'h') ? 0 : start_color[channel_map[channel]]();
+
+					if (!hasRange) {
+						// jQuery UI slider
+						$('#' + slider).slider('value', reset_val);
+						deriveTransformation($('#' + slider), reset_val, slider);
+					} else {
+						// Reset native HTML5 slider
+						$('#' + slider).val(reset_val);
+						deriveTransformation($('#' + slider), reset_val, slider);
+					}
+				}
+
+			})
 
 			// ==================
 			// Event Handling
@@ -245,12 +308,12 @@
 
 			$swatchA.on('transform', function(event, color){
 				$(event.target).css('background-color', color.hex);
-				$(event.target).html(color.hex);
+				$(event.target).find('.swatchPointer').css('border-left-color', color.hex);
 			});
 
 			$swatchB.on('transform', function(event, color){
 				$(event.target).css('background-color', color.hex);
-				$(event.target).html(color.hex);
+				$(event.target).find("span").html(color.hex);
 			});
 
 			// ==================
@@ -291,26 +354,28 @@
 
 			// Remove an existing slider reference from the stack
 			function stack_remove(id) {
-				var index = _.indexOf(stack, id);
-				removed = stack.splice(index, 1);
+				var index 	= _.indexOf(stack, id);
+					removed = stack.splice(index, 1);
 			}
 
-			// Branch how we handle the sliders depending on wether
+			// Branch how we handle the sliders depending on whether
 			// native HTML5 controls are present or we're using
 			// jQuery sliders.
 			if (!hasRange) {
 				$('.ui-slider').on('slide', function(e) {
-					var $el = $(e.target);
-					var val = $(this).slider('option', 'value');
-					var id  = $el.attr('id');
-					deriveTransformation($el, val, id);	
+					var $el = $(e.target),
+						val = $(this).slider('option', 'value'),
+						id  = $el.attr('id');
+					deriveTransformation($el, val, id);
+					$codeOutput.trigger('remove');
 				});
 			} else {
 				$('form').on('change', 'input[type=range]', function(e) {
-					var $el = $(e.target); 
-					var val = $el.val(); 
-					var id  = $el.attr('id');
+					var $el = $(e.target), 
+						val = $el.val(),
+						id  = $el.attr('id');
 					deriveTransformation($el, val, id);
+					$codeOutput.trigger('remove');
 				});
 			}
 
@@ -318,6 +383,7 @@
 			// from the HSL colors they create using the start color
 			// as the transform point.
 			function deriveTransformation($el, val, id) {
+
 				stack_add(id);
 
 				if (id !== 'slider_h') {
@@ -330,15 +396,15 @@
 
 				// Walk the stack and determine what our base colors should be.
 				// Then build the function stack
-				var output_color = start_color;
-				var output_value;
-				var transform;
+				var output_color = start_color,
+					output_value,
+					transform;
 
 				// Use reduce to iterate over the stack and derive our
 				// final output color. We like it functional yo!
 				output_value = _.reduce(stack, function(memo, func) {
 					// if (func !== undefined) {
-						transform = transforms[func](sliders[func].increment, output_color);
+						transform    = transforms[func](sliders[func].increment, output_color);
 						output_color = transform.color;
 						if (memo === undefined) {
 							if (transform.func === null) {
@@ -363,7 +429,7 @@
 						}
 					// }
 				}, start_color.hex)
-				$code.html(output_value);
+				$code.val(output_value);
 				$swatchB.trigger('transform', [output_color]);
 			}
 		});
@@ -377,7 +443,17 @@
 		 _____| ||   _   | _____| | _____| || ||_|| ||   |___ 
 		|_______||__| |__||_______||_______||_|   |_||_______|
 
-		An Arc90 Labs Joint
+		an Arc90 Lab Project, (c) 2012 Arc90, all rights reserved
+
+		GitHub: https://github.com/arc90/sass-color-picker
+
+		Authors:
+
+		* Jim Nielsen
+		* Darren Newton
+		* Robert Petro
+		* Matt Quintanilla
+		* Jesse Reiner
 
 	 -->
 </body>

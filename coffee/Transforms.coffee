@@ -1,3 +1,19 @@
+###
+Transforms
+==========
+
+Part of SassMe - an Arc90 Lab Project
+(c) 2012 Arc90 | arc90.com
+
+Authors:
+
+Jim Nielsen
+Darren Newton
+Robert Petro
+Matt Quintanilla
+Jesse Reiner
+###
+
 root = exports ? this
 
 root.Transforms =

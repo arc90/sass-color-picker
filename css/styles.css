@@ -20,91 +20,106 @@ table { border-collapse: collapse; border-spacing: 0; }
 */
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-body { padding: 0; margin: 0 20px; font: 16px/1.4em "Droid Sans", Arial, sans-serif; color: #333; }
-@media screen and (max-width: 520px) { body { margin: 0; } }
+body { padding: 0 20px; margin: 0; font: 16px/1.4em "Droid Sans", Arial, sans-serif; color: #333; background: #eeeeee url(../img/background.png); background-size: 400px 300px; border-top: 3px solid #ce4ec6; }
+@media screen and (max-width:565px) { body { padding: 0; } }
 
-.wrapper { max-width: 800px; width: 800px\9; margin: 0 auto; padding: 20px; }
+.wrapper { max-width: 850px; width: 850px\9; margin: 0 auto; }
 
-#container { padding: 0 30px 30px; background: #fff; overflow: hidden; margin-bottom: 20px; }
-@media screen and (max-width: 520px) { #container { padding: 0; } }
+#container { clear: both; background: #fdfdfd; overflow: hidden; margin-bottom: 10px; -webkit-box-shadow: #dedede 0 3px 0; -moz-box-shadow: #dedede 0 3px 0; box-shadow: #dedede 0 3px 0; border: 1px solid #eeeeee; }
+@media screen and (max-width:565px) { #container { padding: 0; } }
 
-a, a:link, a:visited { color: #0183b7; text-decoration: none; }
+a, a:link, a:visited { color: #ce4ec6; text-decoration: none; }
 
-a:hover { color: #00161f; text-decoration: underline; }
+a:hover { color: #671c62; text-decoration: underline; }
 
-/* GENERAL INPUT ELEMENTS
- General page styles for input elements
+/* INPUT ELEMENTS
+ Page styles for input elements
 
 */
-label { color: #777777; margin-top: 0px; display: block; }
+label { color: #777777; padding-top: 5px; display: block; text-transform: uppercase; letter-spacing: .15em; }
 
-input[type="text"] { border: 1px solid #e0e0e0; border-bottom-color: #e5e5e5; color: #333333; box-shadow: inset 0 1px 2px #eee; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -o-border-radius: 3px; -ms-border-radius: 3px; padding-left: 2em; font-size: 1em; height: 44px; width: 100%; font-family: 'Droid Sans Mono', Courier, monospace; }
-input[type="text"]::-webkit-input-placeholder { color: #cccccc; }
-input[type="text"]:-moz-placeholder { color: #cccccc; }
-input[type="text"]:focus { outline: none; border: 1px solid #0183b7; box-shadow: 0 0 5px #86dcfe; }
+input#color { border: 1px solid #e0e0e0; border-bottom-color: #e5e5e5; color: #333333; box-shadow: inset 0 1px 2px #eee; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -o-border-radius: 3px; -ms-border-radius: 3px; padding-left: 2em; font-size: 1em; height: 44px; width: 100%; font-family: 'Droid Sans Mono', Courier, monospace; position: relative; z-index: 500; }
+input#color::-webkit-input-placeholder { color: #cccccc; }
+input#color:-moz-placeholder { color: #cccccc; }
+input#color:focus { outline: none; border: 1px solid #ce4ec6; box-shadow: 0 0 8px rgba(206, 78, 198, 0.6); }
 
-label[for="color"] { position: absolute; top: .75em; left: 0; padding-left: 1em; color: #cccccc; }
+label[for="color"] { position: absolute; padding: 0 0 0 1.4em; color: #cccccc; z-index: 501; }
 
-.fakeSlider { margin: 0 auto; width: 75%; }
+.fakeSlider { margin: 0 auto; width: 80%; }
 
 .ui-slider { position: relative; }
 
-.ui-widget-content { border-top: 1px solid #C5C5C5; border-bottom: 1px solid #C5C5C5; height: 4px; }
+.ui-widget-content { border-top: 2px solid #C5C5C5; border-bottom: 2px solid #C5C5C5; height: 0px; }
 
-.ui-slider-handle { background: transparent url(../img/range-handle.png) no-repeat; position: absolute; z-index: 10; bottom: -9px; height: 22px; margin-left: -1%; cursor: default; width: 20px; outline: none; }
+.ui-slider-handle { background: transparent url(../img/range-handle-new.png) no-repeat; background-size: 20px 20px; position: absolute; z-index: 10; bottom: -9px; margin-top: -3px; width: 20px; height: 20px; margin-left: -1%; cursor: pointer; outline: none; }
 
-.flyout { background-color: white; border: 1px solid #EBEBEB; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0 0 15px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family: 'myriad-pro', helvetica, arial, sans-serif; color: #353535; display: none; left: 20%; padding: .5em; position: absolute; text-align: center; top: 130px; z-index: 300; width: 60%; }
+input[type='range'] { -webkit-appearance: none; background-color: #ddd; border-top: 1px solid #aaa; border-bottom: 1px solid #eee; height: 8px; border-radius: 6px; }
 
-.flyout p { color: #bbb; font-size: .8em; }
-
-.flyout input { color: #7e7e7e7; font-size: 0.75em; line-height: 1.2; margin-top: 0.5em; text-align: center; outline: none; }
-
-.flyout a.close, .flyout a.close:hover { background-color: #BBB; background-image: none; border-radius: 15px; cursor: pointer; display: inline-block; font-size: 12px; font-weight: normal; height: 22px; line-height: 1.1; opacity: 1; overflow: hidden; padding-top: 5px; position: absolute; right: -6px; color: white; text-align: center; text-decoration: none; top: -6px; width: 22px; }
-
-input[type='range'] { -webkit-appearance: none; border-top: 1px solid #C5C5C5; border-bottom: 1px solid #C5C5C5; height: 4px; }
-
-input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 100; position: relative; top: 0px; height: 22px; margin-left: -1%; cursor: default; width: 20px; outline: none; background-image: url("../img/range-handle.png"); background-repeat: no-repeat; }
+input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 100; position: relative; top: 0px; width: 20px; height: 20px; cursor: pointer; outline: none; background-repeat: no-repeat; -webkit-border-radius: 40px; -moz-border-radius: 40px; border-radius: 40px; background: transparent url(../img/range-handle-new.png) no-repeat; background-size: 20px 20px; }
 
 /* PAGE HEADER
  SassMe page title styles
 */
-#header { text-align: center; border-bottom: 3px double #E9E9E9; }
-#header h1 { font-weight: 700; font-size: 32px; line-height: 1em; }
-#header p { font-size: 0.75em; line-height: 1.4em; color: #777777; max-width: 500px; margin: .5em auto 0 auto; }
+#header { clear: both; padding: 20px 0; width: 100%; overflow: auto; }
+#header h1 { float: left; width: 230px; height: 53px; overflow: visible; background: url(../img/sass-me-logo.png) 0 0 no-repeat; background-size: 230px 53px; text-indent: -999px; margin: 0 20px 0 15px; }
+#header #tagline { float: left; margin-top: 53px; width: 50%; position: relative; }
+@media screen and (max-width:565px) { #header #tagline { width: 100px; } }
+#header #tagline p { position: absolute; bottom: 0; left: 0; font-size: 1em; line-height: 1.3em; color: #777777; text-shadow: 0 1px 0 white; }
+@media screen and (max-width:565px) { #header #tagline p { font-size: 0.75em; line-height: 1.1em; } }
 
 /* LIST ITEMS
  Styles for each <li> item
 */
-.listItem { text-align: center; margin-bottom: 40px; position: relative; opacity: 1; -webkit-transition: .5s all ease; -moz-transition: .5s all ease; -ms-transition: .5s all ease; -o-transition: .5s all ease; transition: .5s all ease; }
-.listItem.slider { margin: 20px 0; }
-.listItem.slider input { display: block; width: 75%; margin: 0 auto; }
-.listItem.slider label { font-size: 0.75em; }
-.listItem#colorInput { width: 300px; margin: 40px auto; }
+.listItem { text-align: center; position: relative; opacity: 1; -webkit-transition: .5s all ease; -moz-transition: .5s all ease; -ms-transition: .5s all ease; -o-transition: .5s all ease; transition: .5s all ease; }
+.listItem.slider { margin: 25px 0; }
+.listItem.slider input { display: block; width: 80%; margin: 0 auto; }
+.listItem.slider label { font-size: 0.625em; }
+.listItem.slider a { position: absolute; right: 3%; top: -7px; font-size: 0.625em; }
 
-.focus label, .focus #help { color: #0183b7; }
+.focus label, .focus #help { color: #ce4ec6; }
 .focus #help { opacity: 1; }
 
 .inactive .listItem { opacity: .15; }
-.inactive .listItem#colorInput { opacity: 1; }
+.inactive .listItem#swatch1 { opacity: 1; }
+.inactive .listItem #colorOutput { opacity: 0; }
 
 /* SWATCHES
  Styles for the main content swatches
 */
-.swatchContainer { width: 50%; background: #fff; color: #fff; float: left; }
-.swatchContainer .swatch { height: 200px; width: 100%; padding-top: 10px; font-size: 1.125em; }
-.swatchContainer .swatchLabel { color: #777777; font-size: 0.75em; }
-.swatchContainer#swatch1 .swatchLabel { text-align: right; margin-right: 1em; }
-.swatchContainer#swatch2 .swatchLabel { text-align: left; margin-left: 1em; }
+@media only screen and (min-width: 565px) { #swatch1 .swatch { -moz-border-radius-topleft: 10px; -webkit-border-top-left-radius: 10px; border-top-left-radius: 10px; }
+  #swatch2 .swatch { -moz-border-radius-topright: 10px; -webkit-border-top-right-radius: 10px; border-top-right-radius: 10px; }
+  #container { -webkit-border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; -o-border-radius: 10px; border-radius: 10px; } }
+.swatchPointer { width: 0; height: 0; border-top: 150px solid transparent; border-bottom: 150px solid transparent; border-left: 40px solid #fff; position: absolute; z-index: 10; top: 0px; right: -40px; }
+
+.swatchContainer { color: #fff; float: left; position: relative; }
+.swatchContainer#swatch1 { width: 47%; }
+.swatchContainer#swatch2 { width: 53%; }
+.swatchContainer .swatch { height: 300px; line-height: 300px; width: 100%; font-size: 1.125em; font-family: 'Droid Sans Mono', Courier, monospace; }
+.swatchContainer #colorInput { position: relative; width: 130px; margin: 0 auto; }
+.swatchContainer #colorOutput { opacity: 1; width: 130px; background: rgba(0, 0, 0, 0.4); padding: 10px 20px; border: 0px solid #000; color: #fff; position: relative; z-index: 500; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset black 0 0 4px; -moz-box-shadow: inset black 0 0 4px; box-shadow: inset black 0 0 4px; }
+.swatchContainer .swatchLabel { position: absolute; width: 100%; display: block; padding: 20px 0; color: #777777; text-align: center; text-transform: uppercase; letter-spacing: .1em; font-size: 0.625em; }
 
 /* INDIVIDUAL ELEMENTS
  Styles for individual elements on the page
 */
-#code { font-family: 'Droid Sans Mono', Courier, monospace; font-size: 0.875em; clear: both; border: 1px solid #e9e9e9; padding: 5px 0; background: #f7f7f7; cursor: pointer; }
+.codeHelp { background-color: white; border: 1px solid #EBEBEB; -moz-border-radius-topleft: 10px; -webkit-border-top-left-radius: 10px; border-top-left-radius: 10px; -moz-border-radius-topright: 10px; -webkit-border-top-right-radius: 10px; border-top-right-radius: 10px; -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 -4px 6px; -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 -4px 6px; box-shadow: rgba(0, 0, 0, 0.1) 0 -4px 6px; color: #353535; display: none; left: 20%; padding: .5em; position: absolute; text-align: center; top: 260px; z-index: 400; width: 60%; }
 
-#help { opacity: 0; display: block; color: #777777; font-size: 0.875em; }
+#codeOutput { clear: both; border-top: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4; }
+#codeOutput input { font-family: 'Droid Sans Mono', Courier, monospace; padding: 14px 0; margin: 0; font-size: 0.875em; width: 100%; background: #eaeaea; cursor: pointer; outline: none; text-align: center; border: none; }
+#codeOutput input::-webkit-input-placeholder { font-family: 'Droid Sans', Arial, sans-serif; color: #ce4ec6; }
+#codeOutput input:-moz-placeholder { font-family: 'Droid Sans', Arial, sans-serif; color: #ce4ec6; }
+#codeOutput input:hover { color: #ce4ec6; }
+#codeOutput input:focus { background: #ce4ec6; color: #fff; }
+
+#initialHelp { opacity: 0; font-family: "Droid Sans", Helvetica, Arial; position: absolute; left: 80%; top: 40%; color: #777777; font-size: 0.875em; line-height: 4em; width: 400px; color: #ce4ec6; z-index: 400; }
 
 /* FOOTER
 
 */
-#footer { font-size: 0.813em; text-align: center; border-top: 3px double #E9E9E9; padding: 20px 0 60px; color: #777777; }
-#footer #kindling { margin: 30px 0 0 0; }
+#footer { font-size: 0.625em; font-weight: bold; line-height: 1.3em; padding: 10px 20px; color: #777777; text-shadow: 0 1px 0 white; clear: both; }
+@media screen and (max-width:565px) { #footer div { width: 100%; text-align: center; float: none; margin: 20px 0; }
+  #footer img { float: none; width: 20%; } }
+@media screen and (min-width:565px) { #footer #arc90 { float: left; width: 50%; border-right: 1px solid #ddd; }
+  #footer #arc90 img { float: left; width: 75px; height: 29px; margin-right: 10px; }
+  #footer #kindling { text-align: right; float: right; width: 50%; }
+  #footer #kindling img { float: right; width: 82px; height: 29px; margin-left: 10px; } }

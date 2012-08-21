@@ -1,14 +1,28 @@
+###
+Color
+=====
+
+Part of SassMe - an Arc90 Lab Project
+(c) 2012 Arc90 | arc90.com
+
+Authors:
+
+Jim Nielsen
+Darren Newton
+Robert Petro
+Matt Quintanilla
+Jesse Reiner
+
+RGB/HSL Algorithms adapted from:
+http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
+###
+
 root = exports ? this
 
-#### Class Color
-#
 # Stores different color values based on an initial Hexadecimal value. 
 # The overall idea is to operate in a functional manner, so we don't modify 
 # the state of the Color object once its initialized, we only return values.
 # 
-# RGB/HSL Algorithms adapted from:
-# http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
-#
 # @param **color** _String_
 #
 root.Color = class Color
@@ -18,7 +32,8 @@ root.Color = class Color
     @hsl = @rgb2hsl(@rgb) if @rgb?
     return @
 
-  #### Convert Hexadecimal color to rgb()
+  # Convert Hexadecimal color to rgb()
+  	# ------------
   #
   # @param **color** _String_
   #
@@ -29,7 +44,8 @@ root.Color = class Color
       g : parseInt(color.charAt(2) + '' + color.charAt(3), 16),
       b : parseInt(color.charAt(4) + '' + color.charAt(5), 16)
 
-  #### Convert rgb to hsl values
+  # Convert rgb to hsl values
+		# ------------
   #
   # @param **rgb** _Object_
   #
@@ -62,7 +78,8 @@ root.Color = class Color
       s : Math.round(s * 100) 
       l : Math.round(l * 100)
 
-  #### Convert rgb to a hex number suitable for use in HTML  
+  # Convert rgb to a hex number suitable for use in HTML  
+	# ------------
   # http://stackoverflow.com/a/5623914/12799
   #
   # @param **rgb** _Object_  
@@ -70,7 +87,8 @@ root.Color = class Color
   rgb2hex : (rgb) ->
     "#" + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
 
-  #### Convert hue to rgb values
+  # Convert hue to rgb values
+	# ------------
   #
   # convenience method for hsl2rgb
   #
@@ -86,7 +104,8 @@ root.Color = class Color
     return p + (q - p) * (2/3 - t) * 6 if (t < 2/3)
     p;
 
-  #### Convert hsl to rgb values
+  # Convert hsl to rgb values
+	# ------------
   #
   # @param **hsl** _Object_  
   #
@@ -107,14 +126,16 @@ root.Color = class Color
       g : Math.round(g * 255) 
       b : Math.round(b * 255)
 
-  #### Convert hsl to hex number suitable for use in HTML  
+  # Convert hsl to hex number suitable for use in HTML  
+	# ------------
   #
   # @param **hsl** _Object_  
   #   
   hsl2hex : (hsl) ->
     @rgb2hex @hsl2rgb(hsl)
 
-  #### Modify a color
+  # Modify a color
+	# ------------
   #
   # @param **attr** _Object_ attributes you want to change
   #
@@ -156,7 +177,8 @@ root.Color = class Color
           out = @hsl
     out
 
-  #### Ensure a computed value is within a threshold
+  # Ensure a computed value is within a threshold
+	# ------------
   # and if not, send back the upper or lower bounds
   #
   # @param **attr** _Integer_ start value, usually Color attribute  
@@ -173,7 +195,8 @@ root.Color = class Color
       if val > limit[1] then val = limit[1]
     Math.abs(val) # Make sure negative values are positive
 
-  #### Calculate correct # of degrees for shifting hues
+  # Calculate correct # of degrees for shifting hues
+	# ------------
   #
   # @param **attr** _Integer_ start value, usually Color attribute  
   # @param **amount** _Integer_ amount to change degrees  
@@ -184,7 +207,8 @@ root.Color = class Color
     if val < 0 then val += 360
     Math.abs(val) # Make sure negative values are positive
 
-  #### Getters for individual RGB & HSL values of color
+  # Getters for individual RGB & HSL values of color
+	# ------------
   red : ->
     @rgb.r
 
