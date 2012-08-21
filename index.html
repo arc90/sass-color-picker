@@ -354,8 +354,7 @@
 
 			// Remove an existing slider reference from the stack
 			function stack_remove(id) {
-				var index 	= _.indexOf(stack, id);
-					removed = stack.splice(index, 1);
+				return stack = _.reject(stack, function(i) { return i === id })
 			}
 
 			// Branch how we handle the sliders depending on whether
