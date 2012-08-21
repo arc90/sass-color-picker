@@ -220,6 +220,15 @@
 				slider_h : function(val, base_color) {
 					var t;
 					t = Transforms.adjust_hue(base_color, Math.abs(val));
+					if (val === 0) {
+						stack_remove('slider_h');
+						return {
+							color : base_color,
+							func  : null,
+							value : null
+						}
+					}
+					
 					return {
 						color : new Color(t),
 						func  : 'adjust_hue',
