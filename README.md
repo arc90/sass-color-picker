@@ -21,15 +21,11 @@ This will autocompile CoffeeScript into JavaScript in the `/js` dir.
 
 ### Jasmine Tests
 
-The JavaScript files are tested with Jasmine and can be found in the `/tests` dir. You can open `/tests/SpecRunner.html` in your browser and all the tests should pass.
+The JavaScript files are tested with Jasmine and can be found in the `/tests` dir. You can open `/tests/index.html` in your browser and all the tests _should_ pass.
 
 ### Sass/Compass
 
-There is a reference SCSS file I use to make sure functions are working correctly, this is compiled with sass, and you can use the `$ compass watch` to track the `scss` dir.
-
-### Hackety hack hack
-
-A really ugly hack (but it works) of the sliders at work can be seen in `/test.html`
+There is a reference SCSS file used to make sure functions are working correctly, this is compiled with Compass, and you can use the `$ compass watch` to watch/compile the `scss` dir. Install Compass via `$bundle install`.
 
 ---
 
