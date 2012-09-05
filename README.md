@@ -42,3 +42,6 @@ There is a reference SCSS file used to make sure functions are working correctly
 
 ```
 
+### License
+
+MIT License, cause we like to keep it social. (LICENSE.md)
