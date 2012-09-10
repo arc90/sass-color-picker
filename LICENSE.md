@@ -13,10 +13,10 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 Authors:
 --------
 
-Jim Nielsen / @jimniels  
-Darren Newton / @DarrenN  
-Robert Petro / @robertjpetro  
-Matt Quintanilla / @mattq  
+Jim Nielsen / [@jimniels](https://github.com/jimniels)  
+Darren Newton / [@DarrenN](https://github.com/DarrenN)  
+Robert Petro / [@robertjpetro](https://github.com/robertjpetro)  
+Matt Quintanilla / [@mattq](https://github.com/mattq)  
 Jesse Reiner
 
 Documentation and source code can be found here: 
