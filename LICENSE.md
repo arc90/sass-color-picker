@@ -13,11 +13,11 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 Authors:
 --------
 
-Jim Nielsen  
-Darren Newton  
-Robert Petro  
-Matt Quintanilla  
-Jesse Reiner  
+Jim Nielsen / @jimniels  
+Darren Newton / @DarrenN  
+Robert Petro / @robertjpetro  
+Matt Quintanilla / @mattq  
+Jesse Reiner
 
 Documentation and source code can be found here: 
 https://github.com/arc90/sass-color-picker
