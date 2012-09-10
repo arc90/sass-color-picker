@@ -45,3 +45,12 @@ There is a reference SCSS file used to make sure functions are working correctly
 ### License
 
 MIT License, cause we like to keep it social. (LICENSE.md)
+
+Authors:
+--------
+
+Jim Nielsen / [@jimniels](https://github.com/jimniels)  
+Darren Newton / [@DarrenN](https://github.com/DarrenN)  
+Robert Petro / [@robertjpetro](https://github.com/robertjpetro)  
+Matt Quintanilla / [@mattq](https://github.com/mattq)  
+Jesse Reiner
