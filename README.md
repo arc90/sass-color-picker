@@ -3,6 +3,9 @@ sass-color-picker
 
 ### SASS Color Picker, an Arc90 Lab Experiment.
 
+This is a simple web page to help designers/developers visualize a subset of the SASS color functions (lighten, darken, adjust_hue).
+You enter a base color, adjust the sliders to get you desired color, and the SASS functions to achieve that color are provided to you.
+
 ---
 
 ### CoffeeScript Build
