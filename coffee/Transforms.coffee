@@ -33,6 +33,13 @@ Robert Petro
 Matt Quintanilla
 Jesse Reiner
 
+Syntactically Awesome Stylesheets:
+----------------------------------
+
+Structure of the color functions ported from SASS -
+https://github.com/nex3/sass/blob/stable/lib/sass/script/functions.rb
+Copyright (c) 2006-2009 Hampton Catlin, Nathan Weizenbaum, and Chris Eppstein
+
 ###
 
 root = exports ? this
