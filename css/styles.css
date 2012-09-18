@@ -20,7 +20,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 */
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-body { padding: 0 20px; margin: 0; font: 16px/1.4em "Droid Sans", Arial, sans-serif; color: #333; background: #eeeeee url(../img/background@2x.png); background-size: 400px 300px; border-top: 3px solid #ce4ec6; }
+body { padding: 0 20px; margin: 0; font: 16px/1.4em "Droid Sans", Arial, sans-serif; color: #333; background: #eeeeee url(../img/background.png); background-size: 400px 300px; border-top: 3px solid #ce4ec6; }
 @media screen and (max-width: 565px) { body { padding: 0; } }
 
 .wrapper { max-width: 850px; width: 850px\9; margin: 0 auto; }
