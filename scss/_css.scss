@@ -21,7 +21,7 @@ body {
 	margin: 0;
 	font: 16px/1.4em 'Droid Sans', Arial, sans-serif;
 	color: #333;
-    background: #eee url(../img/background.png);
+    background: #eee url(../img/background@2x.png);
     background-size: 400px 300px;
     border-top: 3px solid $highlightColor;
 
@@ -133,7 +133,7 @@ label[for="color"] {
 }
 
 .ui-slider-handle {
-    background: transparent url(../img/range-handle-new.png) no-repeat;
+    background: transparent url(../img/range-handle@2x.png) no-repeat;
     background-size: 20px 20px;
     position: absolute;
     z-index: 10;
@@ -169,7 +169,7 @@ input[type='range']::-webkit-slider-thumb {
     -webkit-border-radius: 40px;
     -moz-border-radius: 40px;
     border-radius: 40px;
-    background: transparent url(../img/range-handle-new.png) no-repeat;
+    background: transparent url(../img/range-handle@2x.png) no-repeat;
     background-size: 20px 20px;
 }
 
@@ -190,7 +190,7 @@ input[type='range']::-webkit-slider-thumb {
         width: 230px;
         height: 53px;
         overflow: visible;
-        background: url(../img/sass-me-logo.png) 0 0 no-repeat;
+        background: url(../img/sass-me-logo@2x.png) 0 0 no-repeat;
         background-size: 230px 53px;
         text-indent: -999px;
         margin: 0 20px 0 15px;
@@ -469,50 +469,47 @@ input[type='range']::-webkit-slider-thumb {
     font-size: (10em / $bodyFontSize);
     font-weight: bold;
     line-height: 1.3em;
-    padding: 10px 20px ;
+    padding: 5px 5px;
     color: $lightTextColor;
     @include text-shadow(0 1px 0 #fff);
     clear: both;
 
-    @media screen and (max-width:565px) {
-        div {
-            width: 100%;
-            text-align: center;
-            float: none;
-            margin: 20px 0;
-        }
+    img {
+        margin: 0 10px;
+    }
+
+    #arc90 {
+        float: left;
+        width: 50%;
+
         img {
-            float: none;
-            width: 20%;
+            float: left;
+            width: 75px;
+            height: 29px;
         }
     }
 
-    @media screen and (min-width:565px) {
+    #kindling {
+        text-align: right;
+        float: right;
+        width: 50%;
 
-        #arc90 {
-            float: left;
-            width: 50%;
-            border-right: 1px solid #ddd;
-
-            img {
-                float: left;
-                width: 75px;
-                height: 29px;
-                margin-right: 10px;
-            }
-        }
-
-        #kindling {
-            text-align: right;
+        img {
             float: right;
-            width: 50%;
+            width: 82px;
+            height: 29px;
+        }
+    }
 
-            img {
-                float: right;
-                width: 82px;
-                height: 29px;
-                margin-left: 10px;
-            }
+    @media screen and (max-width:565px) {
+        div {
+            width: 50%!important;
+            border-bottom: 1px solid #ddd;
+            padding: 0 20px 10px;
+        }        
+        img {
+            float: none!important;
+            margin: 0 0!important;
         }
     }
 }

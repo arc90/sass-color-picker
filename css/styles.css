@@ -20,13 +20,13 @@ table { border-collapse: collapse; border-spacing: 0; }
 */
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-body { padding: 0 20px; margin: 0; font: 16px/1.4em "Droid Sans", Arial, sans-serif; color: #333; background: #eeeeee url(../img/background.png); background-size: 400px 300px; border-top: 3px solid #ce4ec6; }
-@media screen and (max-width:565px) { body { padding: 0; } }
+body { padding: 0 20px; margin: 0; font: 16px/1.4em "Droid Sans", Arial, sans-serif; color: #333; background: #eeeeee url(../img/background@2x.png); background-size: 400px 300px; border-top: 3px solid #ce4ec6; }
+@media screen and (max-width: 565px) { body { padding: 0; } }
 
 .wrapper { max-width: 850px; width: 850px\9; margin: 0 auto; }
 
 #container { clear: both; background: #fdfdfd; overflow: hidden; margin-bottom: 10px; -webkit-box-shadow: #dedede 0 3px 0; -moz-box-shadow: #dedede 0 3px 0; box-shadow: #dedede 0 3px 0; border: 1px solid #eeeeee; }
-@media screen and (max-width:565px) { #container { padding: 0; } }
+@media screen and (max-width: 565px) { #container { padding: 0; } }
 
 a, a:link, a:visited { color: #ce4ec6; text-decoration: none; }
 
@@ -51,21 +51,21 @@ label[for="color"] { position: absolute; padding: 0 0 0 1.4em; color: #cccccc; z
 
 .ui-widget-content { border-top: 2px solid #C5C5C5; border-bottom: 2px solid #C5C5C5; height: 0px; }
 
-.ui-slider-handle { background: transparent url(../img/range-handle-new.png) no-repeat; background-size: 20px 20px; position: absolute; z-index: 10; bottom: -9px; margin-top: -3px; width: 20px; height: 20px; margin-left: -1%; cursor: pointer; outline: none; }
+.ui-slider-handle { background: transparent url(../img/range-handle@2x.png) no-repeat; background-size: 20px 20px; position: absolute; z-index: 10; bottom: -9px; margin-top: -3px; width: 20px; height: 20px; margin-left: -1%; cursor: pointer; outline: none; }
 
 input[type='range'] { -webkit-appearance: none; background-color: #ddd; border-top: 1px solid #aaa; border-bottom: 1px solid #eee; height: 8px; border-radius: 6px; }
 
-input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 100; position: relative; top: 0px; width: 20px; height: 20px; cursor: pointer; outline: none; background-repeat: no-repeat; -webkit-border-radius: 40px; -moz-border-radius: 40px; border-radius: 40px; background: transparent url(../img/range-handle-new.png) no-repeat; background-size: 20px 20px; }
+input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 100; position: relative; top: 0px; width: 20px; height: 20px; cursor: pointer; outline: none; background-repeat: no-repeat; -webkit-border-radius: 40px; -moz-border-radius: 40px; border-radius: 40px; background: transparent url(../img/range-handle@2x.png) no-repeat; background-size: 20px 20px; }
 
 /* PAGE HEADER
  SassMe page title styles
 */
 #header { clear: both; padding: 20px 0; width: 100%; overflow: auto; }
-#header h1 { float: left; width: 230px; height: 53px; overflow: visible; background: url(../img/sass-me-logo.png) 0 0 no-repeat; background-size: 230px 53px; text-indent: -999px; margin: 0 20px 0 15px; }
+#header h1 { float: left; width: 230px; height: 53px; overflow: visible; background: url(../img/sass-me-logo@2x.png) 0 0 no-repeat; background-size: 230px 53px; text-indent: -999px; margin: 0 20px 0 15px; }
 #header #tagline { float: left; margin-top: 53px; width: 50%; position: relative; }
-@media screen and (max-width:565px) { #header #tagline { width: 100px; } }
+@media screen and (max-width: 565px) { #header #tagline { width: 100px; } }
 #header #tagline p { position: absolute; bottom: 0; left: 0; font-size: 1em; line-height: 1.3em; color: #777777; text-shadow: 0 1px 0 white; }
-@media screen and (max-width:565px) { #header #tagline p { font-size: 0.75em; line-height: 1.1em; } }
+@media screen and (max-width: 565px) { #header #tagline p { font-size: 0.75em; line-height: 1.1em; } }
 
 /* LIST ITEMS
  Styles for each <li> item
@@ -116,10 +116,11 @@ input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 1
 /* FOOTER
 
 */
-#footer { font-size: 0.625em; font-weight: bold; line-height: 1.3em; padding: 10px 20px; color: #777777; text-shadow: 0 1px 0 white; clear: both; }
-@media screen and (max-width:565px) { #footer div { width: 100%; text-align: center; float: none; margin: 20px 0; }
-  #footer img { float: none; width: 20%; } }
-@media screen and (min-width:565px) { #footer #arc90 { float: left; width: 50%; border-right: 1px solid #ddd; }
-  #footer #arc90 img { float: left; width: 75px; height: 29px; margin-right: 10px; }
-  #footer #kindling { text-align: right; float: right; width: 50%; }
-  #footer #kindling img { float: right; width: 82px; height: 29px; margin-left: 10px; } }
+#footer { font-size: 0.625em; font-weight: bold; line-height: 1.3em; padding: 5px 5px; color: #777777; text-shadow: 0 1px 0 white; clear: both; }
+#footer img { margin: 0 10px; }
+#footer #arc90 { float: left; width: 50%; }
+#footer #arc90 img { float: left; width: 75px; height: 29px; }
+#footer #kindling { text-align: right; float: right; width: 50%; }
+#footer #kindling img { float: right; width: 82px; height: 29px; }
+@media screen and (max-width: 565px) { #footer div { width: 50%!important; border-bottom: 1px solid #ddd; padding: 0 20px 10px; }
+  #footer img { float: none!important; margin: 0 0!important; } }

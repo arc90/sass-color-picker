@@ -1,0 +1,7 @@
+#container { border: 1px solid #cccccc!important; }
+
+.ui-slider-handle { background: transparent url(../img/range-handle.png) no-repeat !important; }
+
+#header h1 { background: url(../img/sass-me-logo.png) 0 0 no-repeat !important; }
+
+.swatchContainer input { height: 30px!important; }
