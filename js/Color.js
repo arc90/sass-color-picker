@@ -80,37 +80,35 @@ Copyright (c) 2006-2009 Hampton Catlin, Nathan Weizenbaum, and Chris Eppstein
     };
 
     Color.prototype.rgb2hsl = function(rgb) {
-      var b, d, g, h, hsl, l, max, min, r, s, _ref, _ref1, _ref2;
+      var b, d, g, h, hsl, l, max, min, r, s, _ref;
       _ref = [rgb.r, rgb.g, rgb.b], r = _ref[0], g = _ref[1], b = _ref[2];
       r /= 255;
       g /= 255;
       b /= 255;
       max = Math.max(r, g, b);
       min = Math.min(r, g, b);
-      _ref1 = [(max + min) / 2, (max + min) / 2, (max + min) / 2], h = _ref1[0], s = _ref1[1], l = _ref1[2];
-      if (max === min) {
-        h = s = 0;
-      } else {
-        d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      d = max - min;
+      h = (function() {
         switch (max) {
+          case min:
+            return 0;
           case r:
-            h = (g - b) / d + ((_ref2 = g < b) != null ? _ref2 : {
-              6: 0
-            });
-            break;
+            return 60 * (g - b) / d;
           case g:
-            h = (b - r) / d + 2;
-            break;
+            return 60 * (b - r) / d + 120;
           case b:
-            h = (r - g) / d + 4;
+            return 60 * (r - g) / d + 240;
         }
-        h /= 6;
+      })();
+      if (h < 0) {
+        h = 360 + h;
       }
+      l = (max + min) / 2.0;
+      s = max === min ? 0 : l < 0.5 ? d / (2 * l) : d / (2 - 2 * l);
       return hsl = {
-        h: Math.round(h * 360),
-        s: Math.round(s * 100),
-        l: Math.round(l * 100)
+        h: Math.abs((h % 360).toFixed(3)),
+        s: (s * 100).toFixed(3),
+        l: (l * 100).toFixed(3)
       };
     };
 
@@ -139,7 +137,7 @@ Copyright (c) 2006-2009 Hampton Catlin, Nathan Weizenbaum, and Chris Eppstein
 
     Color.prototype.hsl2rgb = function(hsl) {
       var b, g, h, l, p, q, r, rgb, s, _ref;
-      _ref = [hsl.h / 360, hsl.s / 100, hsl.l / 100], h = _ref[0], s = _ref[1], l = _ref[2];
+      _ref = [parseFloat(hsl.h).toFixed(3) / 360, parseFloat(hsl.s).toFixed(3) / 100, parseFloat(hsl.l).toFixed(3) / 100], h = _ref[0], s = _ref[1], l = _ref[2];
       if (s === 0) {
         r = g = b = l;
       } else {

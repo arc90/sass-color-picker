@@ -29,3 +29,25 @@
 .func_stack_b { color: #d0cca4; }
 
 .func_stack_c { color: #e1df70; }
+
+.hue { color: 339.184deg; }
+
+.sat { color: 42.609%; }
+
+.light { color: 77.451%; }
+
+.hue_blue { color: 220deg; }
+
+.sat_blue { color: 100%; }
+
+.light_blue { color: 30%; }
+
+.red { color: 222; }
+
+.rgb { color: #deadbe; }
+
+.darken_10 { color: #cf89a1; }
+
+.saturate_57 { color: #ff8cb4; }
+
+.adjust_hue_302 { color: #cfadde; }

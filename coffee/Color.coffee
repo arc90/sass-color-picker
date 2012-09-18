@@ -80,6 +80,8 @@ root.Color = class Color
   # @param **rgb** _Object_
   #
   # Return and object with the HSL values converted for use in SASS
+  # this now more or less a direct port of SASS's algo which
+  # was take from Wikipedia
   #
   rgb2hsl : (rgb) ->
     [r, g, b] = [rgb.r, rgb.g, rgb.b]
@@ -90,23 +92,32 @@ root.Color = class Color
     max = Math.max(r, g, b)
     min = Math.min(r, g, b)
 
-    [h, s, l] = [(max + min) / 2, (max + min) / 2, (max + min) / 2]
+    d = max - min
 
-    if max == min 
-      h = s = 0; # achromatic
-    else
-      d = max - min;
-      s = if l > 0.5 then d / (2 - max - min) else d / (max + min)
+    h =
       switch max
-        when r then h = (g - b) / d + (g < b ? 6 : 0)
-        when g then h = (b - r) / d + 2
-        when b then h = (r - g) / d + 4
-      h /= 6
+        when min then 0
+        when r then 60 * (g - b) / d
+        when g then 60 * (b - r) / d + 120
+        when b then 60 * (r - g) / d + 240
+
+    # Hue adjustment for negative numbers (facepalm)
+    if h < 0
+      h = 360 + h
+
+    l = (max + min) / 2.0
+
+    s = if max is min
+          0 
+        else if l < 0.5
+          d / (2 * l)
+        else
+          d / (2 - 2 * l)
 
     hsl = 
-      h : Math.round(h * 360) 
-      s : Math.round(s * 100) 
-      l : Math.round(l * 100)
+      h : Math.abs((h % 360).toFixed(3))
+      s : (s * 100).toFixed(3) 
+      l : (l * 100).toFixed(3)
 
   # Convert rgb to a hex number suitable for use in HTML  
 	# ------------
@@ -140,7 +151,7 @@ root.Color = class Color
   # @param **hsl** _Object_  
   #
   hsl2rgb : (hsl) ->
-    [h, s, l] = [hsl.h / 360, hsl.s / 100, hsl.l / 100] # We need to use the raw colors
+    [h, s, l] = [parseFloat(hsl.h).toFixed(3) / 360, parseFloat(hsl.s).toFixed(3) / 100, parseFloat(hsl.l).toFixed(3) / 100] # We need to use the raw colors
 
     if s == 0 
       r = g = b = l; # achromatic
@@ -150,7 +161,7 @@ root.Color = class Color
       r = @hue2rgb(p, q, h + 1/3);
       g = @hue2rgb(p, q, h);
       b = @hue2rgb(p, q, h - 1/3);
-    
+  
     rgb =
       r : Math.round(r * 255)
       g : Math.round(g * 255) 

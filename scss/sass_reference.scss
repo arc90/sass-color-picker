@@ -73,3 +73,51 @@ $ref : #003399;
 .func_stack_c {
 	color: adjust_hue(desaturate(lighten(#0183b7, 30), 34), 222);
 }
+
+// Color test HN
+
+$hn_color : #deadbe;
+
+.hue {
+	color: hue($hn_color);
+}
+
+.sat {
+	color: saturation($hn_color);
+}
+
+.light {
+	color: lightness($hn_color);
+}
+
+.hue_blue {
+	color: hue($ref);
+}
+
+.sat_blue {
+	color: saturation($ref);
+}
+
+.light_blue {
+	color: lightness($ref);
+}
+
+.red {
+	color: red($hn_color);
+}
+
+.rgb {
+	color: rgb(red($hn_color), green($hn_color), blue($hn_color));
+}
+
+.darken_10 {
+	color: darken($hn_color, 10);
+}
+
+.saturate_57 {
+	color: saturate($hn_color, 57);
+}
+
+.adjust_hue_302 {
+	color: adjust_hue($hn_color, 302);
+}
