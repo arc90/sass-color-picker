@@ -106,9 +106,9 @@ Copyright (c) 2006-2009 Hampton Catlin, Nathan Weizenbaum, and Chris Eppstein
       l = (max + min) / 2.0;
       s = max === min ? 0 : l < 0.5 ? d / (2 * l) : d / (2 - 2 * l);
       return hsl = {
-        h: Math.abs((h % 360).toFixed(3)),
-        s: (s * 100).toFixed(3),
-        l: (l * 100).toFixed(3)
+        h: Math.abs((h % 360).toFixed(5)),
+        s: (s * 100).toFixed(5),
+        l: (l * 100).toFixed(5)
       };
     };
 
@@ -137,7 +137,7 @@ Copyright (c) 2006-2009 Hampton Catlin, Nathan Weizenbaum, and Chris Eppstein
 
     Color.prototype.hsl2rgb = function(hsl) {
       var b, g, h, l, p, q, r, rgb, s, _ref;
-      _ref = [parseFloat(hsl.h).toFixed(3) / 360, parseFloat(hsl.s).toFixed(3) / 100, parseFloat(hsl.l).toFixed(3) / 100], h = _ref[0], s = _ref[1], l = _ref[2];
+      _ref = [parseFloat(hsl.h).toFixed(5) / 360, parseFloat(hsl.s).toFixed(5) / 100, parseFloat(hsl.l).toFixed(5) / 100], h = _ref[0], s = _ref[1], l = _ref[2];
       if (s === 0) {
         r = g = b = l;
       } else {

@@ -115,9 +115,9 @@ root.Color = class Color
           d / (2 - 2 * l)
 
     hsl = 
-      h : Math.abs((h % 360).toFixed(3))
-      s : (s * 100).toFixed(3) 
-      l : (l * 100).toFixed(3)
+      h : Math.abs((h % 360).toFixed(5))
+      s : (s * 100).toFixed(5) 
+      l : (l * 100).toFixed(5)
 
   # Convert rgb to a hex number suitable for use in HTML  
 	# ------------
@@ -151,7 +151,7 @@ root.Color = class Color
   # @param **hsl** _Object_  
   #
   hsl2rgb : (hsl) ->
-    [h, s, l] = [parseFloat(hsl.h).toFixed(3) / 360, parseFloat(hsl.s).toFixed(3) / 100, parseFloat(hsl.l).toFixed(3) / 100] # We need to use the raw colors
+    [h, s, l] = [parseFloat(hsl.h).toFixed(5) / 360, parseFloat(hsl.s).toFixed(5) / 100, parseFloat(hsl.l).toFixed(5) / 100] # We need to use the raw colors
 
     if s == 0 
       r = g = b = l; # achromatic
