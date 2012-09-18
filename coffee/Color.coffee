@@ -33,8 +33,17 @@ Robert Petro
 Matt Quintanilla
 Jesse Reiner
 
+Color algorithms:
+-----------------
 RGB/HSL Algorithms adapted from: http://mjijackson.com/2008/02/rgb-to-hsl-and-
 rgb-to-hsv-color-model-conversion-algorithms-in-javascript
+
+Syntactically Awesome Stylesheets:
+----------------------------------
+The overall structure of the SASS conversions is based on the Ruby
+SASS project:
+https://github.com/nex3/sass/blob/stable/lib/sass/script/color.rb
+Copyright (c) 2006-2009 Hampton Catlin, Nathan Weizenbaum, and Chris Eppstein
 
 ###
 
