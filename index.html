@@ -291,9 +291,10 @@
 			});
 
 
-			// Clicking the code will select the text in the input and give you a helpful message
+			// Clicking the code will select the text in the input and 
+			// give you a helpful message
 			$codeOutput.data('state', 'default');
-			$codeOutput.on('remove', function(){
+			$codeOutput.on('vanish', function(){
 				if ($codeOutput.data('state') === 'default') {
 					// Assign a handler to bring up help message
 					$code.click(function(){
@@ -419,7 +420,7 @@
 						val = $(this).slider('option', 'value'),
 						id  = $el.attr('id');
 					deriveTransformation($el, val, id);
-					$codeOutput.trigger('remove');
+					$codeOutput.trigger('vanish');
 				});
 			} else {
 				$form.on('change', 'input[type=range]', function(e) {
@@ -427,7 +428,7 @@
 						val = $el.val(),
 						id  = $el.attr('id');
 					deriveTransformation($el, val, id);
-					$codeOutput.trigger('remove');
+					$codeOutput.trigger('vanish');
 				});
 			}
 
