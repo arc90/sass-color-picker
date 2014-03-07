@@ -476,6 +476,7 @@ input[type='range']::-webkit-slider-thumb {
 
     img {
         margin: 0 10px;
+        position: relative;
     }
 
     #arc90 {
@@ -484,8 +485,9 @@ input[type='range']::-webkit-slider-thumb {
 
         img {
             float: left;
-            width: 75px;
-            height: 29px;
+            width: 91px;
+            height: 35px;
+            top: -4px;
         }
     }
 
@@ -496,8 +498,9 @@ input[type='range']::-webkit-slider-thumb {
 
         img {
             float: right;
-            width: 82px;
-            height: 29px;
+            width: 100px;
+            height: 35px;
+            top: -2px;
         }
     }
 

@@ -20,7 +20,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 */
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-body { padding: 0 20px; margin: 0; font: 16px/1.4em "Droid Sans", Arial, sans-serif; color: #333; background: #eeeeee url(../img/background.png); background-size: 400px 300px; border-top: 3px solid #ce4ec6; }
+body { padding: 0 20px; margin: 0; font: 16px/1.4em 'Droid Sans', Arial, sans-serif; color: #333; background: #eeeeee url(../img/background.png); background-size: 400px 300px; border-top: 3px solid #ce4ec6; }
 @media screen and (max-width: 565px) { body { padding: 0; } }
 
 .wrapper { max-width: 850px; width: 850px\9; margin: 0 auto; }
@@ -117,10 +117,10 @@ input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; z-index: 1
 
 */
 #footer { font-size: 0.625em; font-weight: bold; line-height: 1.3em; padding: 5px 5px; color: #777777; text-shadow: 0 1px 0 white; clear: both; }
-#footer img { margin: 0 10px; }
+#footer img { margin: 0 10px; position: relative; }
 #footer #arc90 { float: left; width: 50%; }
-#footer #arc90 img { float: left; width: 75px; height: 29px; }
+#footer #arc90 img { float: left; width: 91px; height: 35px; top: -4px; }
 #footer #kindling { text-align: right; float: right; width: 50%; }
-#footer #kindling img { float: right; width: 82px; height: 29px; }
-@media screen and (max-width: 565px) { #footer div { width: 50%!important; border-bottom: 1px solid #ddd; padding: 0 20px 10px; }
-  #footer img { float: none!important; margin: 0 0!important; } }
+#footer #kindling img { float: right; width: 100px; height: 35px; top: -2px; }
+@media screen and (max-width: 565px) { #footer div { width: 50% !important; border-bottom: 1px solid #ddd; padding: 0 20px 10px; }
+  #footer img { float: none !important; margin: 0 0 !important; } }
